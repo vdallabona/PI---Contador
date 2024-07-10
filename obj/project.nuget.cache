@@ -1,10 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "+2BSHvrxSyI=",
+  "dgSpecHash": "TJnFQ7lOkmQ=",
   "success": true,
-  "projectFilePath": "C:\\Users\\viniv\\Desktop\\PI - Contador\\PI - Vini beta login.csproj",
+  "projectFilePath": "C:\\Users\\Victo\\repos\\PI---Contador\\PI - Vini beta login.csproj",
   "expectedPackageFiles": [
-    "C:\\Users\\viniv\\.nuget\\packages\\mysqlconnector\\2.2.5\\mysqlconnector.2.2.5.nupkg.sha512"
+    "C:\\Users\\Victo\\.nuget\\packages\\mysqlconnector\\2.2.5\\mysqlconnector.2.2.5.nupkg.sha512"
   ],
   "logs": []
 }
