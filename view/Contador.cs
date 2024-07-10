@@ -4,7 +4,7 @@ using System.Windows.Forms;
 
 namespace View
 {
-    public class ViewContabeis : Form
+    public class ViewContador : Form
     {
         private readonly Label lblTituloLogin;
         private readonly Label lblLogin;
@@ -15,7 +15,7 @@ namespace View
         private readonly Button btnCadastrar;
         private readonly Panel PnlLogin;
 
-        public ViewContabeis()
+        public ViewContador()
         {
             StartPosition = FormStartPosition.CenterScreen;
             MinimumSize = new Size(800, 600);
