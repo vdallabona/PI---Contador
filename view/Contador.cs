@@ -8,7 +8,7 @@ namespace View
     {
         private readonly Label lblTituloLogin;
         private readonly Label lblLogin;
-        private readonly TextBox inputLogin;
+        private readonly TextBox inpLogin;
         private readonly Label lblSenha;
         private readonly TextBox inpSenha;
         private readonly Button btnLogar;
@@ -38,7 +38,7 @@ namespace View
                 AutoSize = true
             };
 
-            inputLogin = new TextBox
+            inpLogin = new TextBox
             {
                 Size = new Size(200, 30),
                 Location = new Point(150, 55),
@@ -96,7 +96,7 @@ namespace View
             Controls.Add(PnlLogin);
             PnlLogin.Controls.Add(lblTituloLogin);
             PnlLogin.Controls.Add(lblLogin);
-            PnlLogin.Controls.Add(inputLogin);
+            PnlLogin.Controls.Add(inpLogin);
             PnlLogin.Controls.Add(lblSenha);
             PnlLogin.Controls.Add(inpSenha);
             PnlLogin.Controls.Add(btnCadastrar);
