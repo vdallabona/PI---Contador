@@ -16,6 +16,7 @@ namespace View
         private readonly Button btnAlterar;
         private readonly Button btnCadastrar;
         private readonly Button btnDeletar;
+        private readonly Button btnHomepage;
         private readonly Panel PnlLogin;
         private readonly DataGridView DataGridListar;
 
@@ -23,6 +24,7 @@ namespace View
         {
             StartPosition = FormStartPosition.CenterScreen;
             MinimumSize = new Size(800, 600);
+            MaximumSize = new Size(800, 600);
             BackColor = Color.White;
             Text = "Login";
 
@@ -37,7 +39,7 @@ namespace View
             lblUsuario = new Label
             {
                 Text = "Nome de Usuário: ",
-                Location = new Point(20, 65),
+                Location = new Point(20, 70),
                 Font = new Font("Arial", 12),
                 AutoSize = true
             };
@@ -49,11 +51,11 @@ namespace View
                 Font = new Font("Arial", 12),
                 BorderStyle = BorderStyle.FixedSingle
             };
-            
+
             lblLogin = new Label
             {
                 Text = "Login: ",
-                Location = new Point(20, 110),
+                Location = new Point(20, 115),
                 Font = new Font("Arial", 12),
                 AutoSize = true
             };
@@ -61,7 +63,7 @@ namespace View
             inpLogin = new TextBox
             {
                 Size = new Size(200, 30),
-                Location = new Point(170, 105),
+                Location = new Point(170, 110),
                 Font = new Font("Arial", 12),
                 BorderStyle = BorderStyle.FixedSingle
             };
@@ -104,7 +106,7 @@ namespace View
                 Font = new Font("Arial", 10)
             };
             btnAlterar.Click += ClickAlterar;
-            
+
             btnDeletar = new Button
             {
                 Text = "DELETAR",
@@ -115,6 +117,17 @@ namespace View
                 Font = new Font("Arial", 10)
             };
             btnDeletar.Click += ClickDeletar;
+
+            btnHomepage = new Button
+            {
+                Text = "HOME",
+                Location = new Point(10, 10),
+                Size = new Size(120, 40),
+                BackColor = Color.LightGray,
+                FlatStyle = FlatStyle.Flat,
+                Font = new Font("Arial", 10)
+            };
+            btnHomepage.Click += ClickHomepage;
 
             PnlLogin = new Panel
             {
@@ -140,8 +153,9 @@ namespace View
             PnlLogin.Controls.Add(btnCadastrar);
             PnlLogin.Controls.Add(btnAlterar);
             PnlLogin.Controls.Add(btnDeletar);
+            Controls.Add(btnHomepage);
             Controls.Add(DataGridListar);
-            //Listar();
+            Listar();
         }
 
         private void Listar() {
@@ -151,44 +165,31 @@ namespace View
             // DataGridListar.DataSource = tarefas;
 
             DataGridListar.Columns.Add(new DataGridViewTextBoxColumn{
-                HeaderText = "ID",
-                DataPropertyName = "idTarefa"
-            });
-
-            DataGridListar.Columns.Add(new DataGridViewTextBoxColumn{
                 HeaderText = "Nome",
-                DataPropertyName = "Nome"
+                DataPropertyName = "Nome",
+                Width = this.ClientSize.Width / 3
             });
 
             DataGridListar.Columns.Add(new DataGridViewTextBoxColumn{
-                HeaderText = "Data",
-                DataPropertyName = "Data"
+                HeaderText = "Login",
+                DataPropertyName = "Login",
+                Width = this.ClientSize.Width / 3
             });
 
             DataGridListar.Columns.Add(new DataGridViewTextBoxColumn{
-                HeaderText = "Hora",
-                DataPropertyName = "Hora"
-            });
-
-            DataGridListar.Columns.Add(new DataGridViewTextBoxColumn{
-                HeaderText = "Status",
-                DataPropertyName = "Concluida"
+                HeaderText = "Senha",
+                DataPropertyName = "Senha",
+                Width = this.ClientSize.Width / 3
             });
         }
 
         private void ClickCadastrar(object? sender, EventArgs e)
-        {
-
-        }
-
+        {}
         private void ClickAlterar(object? sender, EventArgs e)
-        {
-
-        }
+        {}
         private void ClickDeletar(object? sender, EventArgs e)
-        {
-
-        }
-
+        {}
+        private void ClickHomepage(object? sender, EventArgs e)
+        {}
     }
 }
