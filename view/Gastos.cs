@@ -17,9 +17,11 @@ namespace View
         private readonly Button btnCadastrar;
         private readonly Button btnHome;
         private readonly DataGridView dgvGastos;
+        private readonly Form parentForm;
 
-        public ViewGastos()
+        public ViewGastos(Form parent)
         {
+            parentForm = parent;
             this.pnlHeader = new System.Windows.Forms.Panel();
             this.pnlDgv = new System.Windows.Forms.Panel();
             this.lblCadastro = new System.Windows.Forms.Label();
@@ -216,7 +218,7 @@ namespace View
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.StartPosition = FormStartPosition.CenterScreen;
-            this.ClientSize = new System.Drawing.Size(897, 578);
+            this.ClientSize = new System.Drawing.Size(800, 600);
             this.Controls.Add(this.pnlDgv);
             this.Controls.Add(this.pnlHeader);
             this.MinimumSize = new System.Drawing.Size(800, 600);
@@ -266,17 +268,7 @@ namespace View
 
             foreach (DataGridViewColumn column in dgvGastos.Columns)
             {
-                if (column.DataPropertyName == "Gastos")
-                    column.Width = this.ClientSize.Width / 4;
-                column.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
-                if (column.DataPropertyName == "Valor")
-                    column.Width = this.ClientSize.Width / 4;
-                column.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
-                if (column.DataPropertyName == "Categoria")
-                    column.Width = this.ClientSize.Width / 4;
-                column.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
-                if (column.DataPropertyName == "Data")
-                    column.Width = this.ClientSize.Width / 4;
+                column.Width = this.ClientSize.Width / 4;
                 column.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
             }
         }
@@ -298,7 +290,9 @@ namespace View
         
         private void ClickHome(object? sender, EventArgs e)
         {
+            Close();
 
+            parentForm.Show();
         }
     }
 }
