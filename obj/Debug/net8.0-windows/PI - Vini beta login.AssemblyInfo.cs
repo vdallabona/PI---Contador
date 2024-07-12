@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("PI - Vini beta login")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+27501bf2ee16d98b7dfe1fcdfcd650090bac2292")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+4a330b6a2459af0990e2030ea223e04a0e881747")]
 [assembly: System.Reflection.AssemblyProductAttribute("PI - Vini beta login")]
 [assembly: System.Reflection.AssemblyTitleAttribute("PI - Vini beta login")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
