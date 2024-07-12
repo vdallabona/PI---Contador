@@ -17,6 +17,7 @@ namespace View
         private readonly Button btnCadastrar;
         private readonly Button btnDeletar;
         private readonly Panel PnlLogin;
+        private readonly DataGridView DataGridListar;
 
         public ViewMembros()
         {
@@ -85,9 +86,9 @@ namespace View
             btnCadastrar = new Button
             {
                 Text = "CADASTRAR",
-                Location = new Point(20, 210),
+                Location = new Point(270, 210),
                 Size = new Size(120, 40),
-                BackColor = Color.LightGray,
+                BackColor = Color.LightGreen,
                 FlatStyle = FlatStyle.Flat,
                 Font = new Font("Arial", 10)
             };
@@ -107,9 +108,9 @@ namespace View
             btnDeletar = new Button
             {
                 Text = "DELETAR",
-                Location = new Point(270, 210),
+                Location = new Point(20, 210),
                 Size = new Size(120, 40),
-                BackColor = Color.LightBlue,
+                BackColor = Color.Pink,
                 FlatStyle = FlatStyle.Flat,
                 Font = new Font("Arial", 10)
             };
@@ -117,10 +118,15 @@ namespace View
 
             PnlLogin = new Panel
             {
-                MinimumSize = new Size(400, 400),
+                MinimumSize = new Size(400, 250),
                 Dock = DockStyle.Fill,
                 Anchor = AnchorStyles.None,
                 Location = new Point(this.ClientSize.Width / 2 - 200, this.ClientSize.Height / 3 - 150)
+            };
+
+            DataGridListar = new DataGridView {
+                Location = new Point(0, 300),
+                Size = new Size(800, 600)
             };
 
             Controls.Add(PnlLogin);
@@ -134,6 +140,40 @@ namespace View
             PnlLogin.Controls.Add(btnCadastrar);
             PnlLogin.Controls.Add(btnAlterar);
             PnlLogin.Controls.Add(btnDeletar);
+            Controls.Add(DataGridListar);
+            //Listar();
+        }
+
+        private void Listar() {
+            // List<Tarefa> tarefas = ControllerTarefa.ListarTarefa();
+            // DataGridListar.Columns.Clear();
+            // DataGridListar.AutoGenerateColumns = false;
+            // DataGridListar.DataSource = tarefas;
+
+            DataGridListar.Columns.Add(new DataGridViewTextBoxColumn{
+                HeaderText = "ID",
+                DataPropertyName = "idTarefa"
+            });
+
+            DataGridListar.Columns.Add(new DataGridViewTextBoxColumn{
+                HeaderText = "Nome",
+                DataPropertyName = "Nome"
+            });
+
+            DataGridListar.Columns.Add(new DataGridViewTextBoxColumn{
+                HeaderText = "Data",
+                DataPropertyName = "Data"
+            });
+
+            DataGridListar.Columns.Add(new DataGridViewTextBoxColumn{
+                HeaderText = "Hora",
+                DataPropertyName = "Hora"
+            });
+
+            DataGridListar.Columns.Add(new DataGridViewTextBoxColumn{
+                HeaderText = "Status",
+                DataPropertyName = "Concluida"
+            });
         }
 
         private void ClickCadastrar(object? sender, EventArgs e)
