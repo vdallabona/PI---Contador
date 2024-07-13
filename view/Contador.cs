@@ -17,6 +17,7 @@ namespace View
 
         public ViewContador()
         {
+            
             StartPosition = FormStartPosition.CenterScreen;
             MinimumSize = new Size(800, 600);
             BackColor = Color.White;
@@ -105,11 +106,30 @@ namespace View
 
         private void ClickCadastrar(object? sender, EventArgs e)
         {
+            
+            Hide();
+            new ViewCadastro(this).Show();
+            
+
+            
+            
 
         }
 
         private void ClickLogar(object? sender, EventArgs e)
         {
+            if(inpLogin.Text == ""){
+                MessageBox.Show("Input login não pode ser vazio");
+                return;
+            }
+            
+            if(inpSenha.Text ==""){
+                MessageBox.Show("Input senha não pode ser vazio");
+                return;
+            }
+
+            Hide();
+            new ViewHome(this).Show();
 
         }
 

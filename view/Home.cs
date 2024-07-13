@@ -6,15 +6,16 @@ namespace View
 {
     public class ViewHome : Form
     {
-
+        private readonly Form ParentForm;
         private readonly Label lblTituloHome;
         private readonly Button btnGastos;
         private readonly Button btnSair;
         private readonly Button btnEstatistica;
         private readonly Panel PnlLogin;
 
-        public ViewHome()
+        public ViewHome(Form parent)
         {
+            ParentForm = parent;
             StartPosition = FormStartPosition.CenterScreen;
             MinimumSize = new Size(800, 600);
             BackColor = Color.White;

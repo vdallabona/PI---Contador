@@ -31,22 +31,27 @@ C:\Users\vinicius.dallabona\Desktop\PI---Contador\obj\Debug\net8.0-windows\PI - 
 C:\Users\vinicius.dallabona\Desktop\PI---Contador\obj\Debug\net8.0-windows\PI - Contador.AssemblyInfo.cs
 C:\Users\vinicius.dallabona\Desktop\PI---Contador\obj\Debug\net8.0-windows\PI - Contador.csproj.CoreCompileInputs.cache
 C:\Users\vinicius.dallabona\Desktop\PI---Contador\obj\Debug\net8.0-windows\PI - Contador.sourcelink.json
-<<<<<<< HEAD
 C:\Users\vinicius.dallabona\Desktop\PI---Contador\obj\Debug\net8.0-windows\PI - Con.8B8DA394.Up2Date
 C:\Users\vinicius.dallabona\Desktop\PI---Contador\obj\Debug\net8.0-windows\PI - Contador.dll
 C:\Users\vinicius.dallabona\Desktop\PI---Contador\obj\Debug\net8.0-windows\refint\PI - Contador.dll
 C:\Users\vinicius.dallabona\Desktop\PI---Contador\obj\Debug\net8.0-windows\PI - Contador.pdb
-=======
-C:\Users\vinicius.dallabona\Desktop\PI---Contador\obj\Debug\net8.0-windows\PI - Contador.dll
-C:\Users\vinicius.dallabona\Desktop\PI---Contador\obj\Debug\net8.0-windows\refint\PI - Contador.dll
-C:\Users\vinicius.dallabona\Desktop\PI---Contador\obj\Debug\net8.0-windows\PI - Contador.pdb
-C:\Users\vinicius.dallabona\Desktop\PI---Contador\bin\Debug\net8.0-windows\PI - Contador.exe
-C:\Users\vinicius.dallabona\Desktop\PI---Contador\bin\Debug\net8.0-windows\PI - Contador.deps.json
-C:\Users\vinicius.dallabona\Desktop\PI---Contador\bin\Debug\net8.0-windows\PI - Contador.runtimeconfig.json
-C:\Users\vinicius.dallabona\Desktop\PI---Contador\bin\Debug\net8.0-windows\PI - Contador.dll
-C:\Users\vinicius.dallabona\Desktop\PI---Contador\bin\Debug\net8.0-windows\PI - Contador.pdb
-C:\Users\vinicius.dallabona\Desktop\PI---Contador\bin\Debug\net8.0-windows\MySqlConnector.dll
-C:\Users\vinicius.dallabona\Desktop\PI---Contador\obj\Debug\net8.0-windows\PI - Con.8B8DA394.Up2Date
->>>>>>> 664a4c38c5414869b47dadbf250021d296af5e88
 C:\Users\vinicius.dallabona\Desktop\PI---Contador\obj\Debug\net8.0-windows\PI - Contador.genruntimeconfig.cache
 C:\Users\vinicius.dallabona\Desktop\PI---Contador\obj\Debug\net8.0-windows\ref\PI - Contador.dll
+C:\Users\wanderson.ricardo\Downloads\PI---Contador\obj\Debug\net8.0-windows\PI - Contador.csproj.AssemblyReference.cache
+C:\Users\wanderson.ricardo\Downloads\PI---Contador\obj\Debug\net8.0-windows\PI - Contador.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\wanderson.ricardo\Downloads\PI---Contador\obj\Debug\net8.0-windows\PI - Contador.AssemblyInfoInputs.cache
+C:\Users\wanderson.ricardo\Downloads\PI---Contador\obj\Debug\net8.0-windows\PI - Contador.AssemblyInfo.cs
+C:\Users\wanderson.ricardo\Downloads\PI---Contador\obj\Debug\net8.0-windows\PI - Contador.csproj.CoreCompileInputs.cache
+C:\Users\wanderson.ricardo\Downloads\PI---Contador\obj\Debug\net8.0-windows\PI - Contador.sourcelink.json
+C:\Users\wanderson.ricardo\Downloads\PI---Contador\obj\Debug\net8.0-windows\PI - Contador.dll
+C:\Users\wanderson.ricardo\Downloads\PI---Contador\obj\Debug\net8.0-windows\refint\PI - Contador.dll
+C:\Users\wanderson.ricardo\Downloads\PI---Contador\obj\Debug\net8.0-windows\PI - Contador.pdb
+C:\Users\wanderson.ricardo\Downloads\PI---Contador\bin\Debug\net8.0-windows\PI - Contador.exe
+C:\Users\wanderson.ricardo\Downloads\PI---Contador\bin\Debug\net8.0-windows\PI - Contador.deps.json
+C:\Users\wanderson.ricardo\Downloads\PI---Contador\bin\Debug\net8.0-windows\PI - Contador.runtimeconfig.json
+C:\Users\wanderson.ricardo\Downloads\PI---Contador\bin\Debug\net8.0-windows\PI - Contador.dll
+C:\Users\wanderson.ricardo\Downloads\PI---Contador\bin\Debug\net8.0-windows\PI - Contador.pdb
+C:\Users\wanderson.ricardo\Downloads\PI---Contador\bin\Debug\net8.0-windows\MySqlConnector.dll
+C:\Users\wanderson.ricardo\Downloads\PI---Contador\obj\Debug\net8.0-windows\PI - Con.8B8DA394.Up2Date
+C:\Users\wanderson.ricardo\Downloads\PI---Contador\obj\Debug\net8.0-windows\PI - Contador.genruntimeconfig.cache
+C:\Users\wanderson.ricardo\Downloads\PI---Contador\obj\Debug\net8.0-windows\ref\PI - Contador.dll
