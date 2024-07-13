@@ -5,7 +5,7 @@ using System.Windows.Forms;
 namespace View
 {
     public class ViewHomeAdm : Form
-    {   
+    {
         private readonly Form ParentForm;
         private readonly Label lblTituloHomePage;
         private readonly Button btnMembros;
@@ -13,8 +13,6 @@ namespace View
         private readonly Button btnGastos;
         private readonly Button btnEstatisticas;
         private readonly Button btnSair;
-
-        
 
         public ViewHomeAdm(Form parent)
         {
@@ -97,7 +95,7 @@ namespace View
 
         private void ClickMembros(object? sender, EventArgs e)
         {
-
+            
         }
 
         private void ClickCategorias(object? sender, EventArgs e)
@@ -112,7 +110,7 @@ namespace View
 
         private void ClickEstatisticas(object? sender, EventArgs e)
         {
-
+            
         }
 
         private void ClickSair(object? sender, EventArgs e)
@@ -122,6 +120,7 @@ namespace View
             {
                 Application.Exit();
             }
+
         }
     }
 }
