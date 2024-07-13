@@ -6,6 +6,8 @@ namespace View
 {
     public class ViewCadastro : Form
     {
+        
+        private readonly Form ParentForm;
         private readonly Label lblTituloCadastro;
         
         private readonly Label lblNomeFam;
@@ -27,8 +29,9 @@ namespace View
 
         private readonly Panel PnlLogin;
 
-        public ViewCadastro()
+        public ViewCadastro(Form parent)
         {
+            ParentForm = parent;
             StartPosition = FormStartPosition.CenterScreen;
             MinimumSize = new Size(800, 600);
             BackColor = Color.White;
@@ -173,6 +176,7 @@ namespace View
             if(inpNomeFam.Text == "" || inpLoginFam.Text == "" || inpSenhaFam.Text == "" || inpLoginAdm.Text == "" || inpSenhaAdm.Text == ""){
                 MessageBox.Show("Por favor, preencha todos os campos");
         }else{
+        
 
         }
         }
