@@ -13,8 +13,6 @@ namespace View
         private readonly Button btnEstatisticas;
         private readonly Button btnSair;
 
-        
-
         public ViewHomeAdm()
         {
             StartPosition = FormStartPosition.CenterScreen;
@@ -95,7 +93,7 @@ namespace View
 
         private void ClickMembros(object? sender, EventArgs e)
         {
-
+            
         }
 
         private void ClickCategorias(object? sender, EventArgs e)
@@ -110,11 +108,16 @@ namespace View
 
         private void ClickEstatisticas(object? sender, EventArgs e)
         {
-
+            
         }
 
         private void ClickSair(object? sender, EventArgs e)
         {
+            DialogResult dialogResult = MessageBox.Show("Tem certeza que deseja sair?", "Sair");
+            if (dialogResult == DialogResult.Yes)
+            {
+                Application.Exit();
+            }
 
         }
     }
