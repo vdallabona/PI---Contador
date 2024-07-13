@@ -117,7 +117,11 @@ namespace View
 
         private void ClickSair(object? sender, EventArgs e)
         {
-
+            DialogResult dialogResult = MessageBox.Show("Tem certeza que deseja sair?", "Sair");
+            if (dialogResult == DialogResult.Yes)
+            {
+                Application.Exit();
+            }
         }
     }
 }
