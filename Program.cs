@@ -6,6 +6,6 @@ static class Program
 {
     static void Main()
     {
-        Application.Run(new ViewMembros());
+        Application.Run(new ViewGastos());
     }    
 }

@@ -1,10 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "6QZOWa2jqC7NFL++Z801IQ7x3g3p/B4SFvL4d0DaxxrTPTY9p4YcnL1SPP9/VzLcqKVp87vySIr2gPAjnn+IeQ==",
+  "dgSpecHash": "vfvn+UL6Eyw=",
   "success": true,
-  "projectFilePath": "C:\\Users\\vinicius.dallabona\\Desktop\\PI---Contador\\PI - Contador.csproj",
+  "projectFilePath": "C:\\Users\\victor.ezaki\\Documents\\PI---Contador\\PI - Contador.csproj",
   "expectedPackageFiles": [
-    "C:\\Users\\vinicius.dallabona\\.nuget\\packages\\mysqlconnector\\2.2.5\\mysqlconnector.2.2.5.nupkg.sha512"
+    "C:\\Users\\victor.ezaki\\.nuget\\packages\\mysqlconnector\\2.2.5\\mysqlconnector.2.2.5.nupkg.sha512"
   ],
   "logs": []
 }

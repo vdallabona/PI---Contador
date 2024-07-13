@@ -1,3 +1,6 @@
+using Controller;
+using Model;
+
 namespace View
 {
     public class ViewGastos : Form
@@ -19,9 +22,11 @@ namespace View
         private readonly DataGridView dgvGastos;
         private readonly Form parentForm;
 
-        public ViewGastos(Form parent)
+        public ViewGastos()
         {
-            parentForm = parent;
+            List<Gastos> gastos = ControllerGastos.ListarGastos();
+            ControllerGastos.Sincronizar();
+            // parentForm = parent;
             this.pnlHeader = new System.Windows.Forms.Panel();
             this.pnlDgv = new System.Windows.Forms.Panel();
             this.lblCadastro = new System.Windows.Forms.Label();
@@ -236,16 +241,16 @@ namespace View
 
         private void Listar()
         {
-            // List<Gastos> gastos = ControllerGastos.ListarGastos();
+            List<Gastos> gastos = ControllerGastos.ListarGastos();
 
             dgvGastos.Columns.Clear();
             dgvGastos.AutoGenerateColumns = false;
-            // dgvGastos.DataSource = gastos;
+            dgvGastos.DataSource = gastos;
 
             dgvGastos.Columns.Add(new DataGridViewTextBoxColumn
             {
-                HeaderText = "Gastos",
-                DataPropertyName = "Gastos"
+                HeaderText = "Nome do Gasto",
+                DataPropertyName = "Nome"
             });
 
             dgvGastos.Columns.Add(new DataGridViewTextBoxColumn
