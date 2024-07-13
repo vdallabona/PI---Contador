@@ -6,6 +6,7 @@ namespace View
 {
     public class ViewHomeAdm : Form
     {
+        private readonly Form ParentForm;
         private readonly Label lblTituloHomePage;
         private readonly Button btnMembros;
         private readonly Button btnCategorias;
@@ -13,8 +14,9 @@ namespace View
         private readonly Button btnEstatisticas;
         private readonly Button btnSair;
 
-        public ViewHomeAdm()
+        public ViewHomeAdm(Form parent)
         {
+            ParentForm = parent;
             StartPosition = FormStartPosition.CenterScreen;
             MinimumSize = new Size(800, 600);
             BackColor = Color.White;
