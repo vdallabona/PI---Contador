@@ -11,19 +11,9 @@ namespace Repo
 
         public static List<Gastos> ListarGastos()
         {
-
             return gastos;
         }
 
-        public static List<string> ListarCategorias()
-        {
-            // for (int i = 0; i < gastos.Count; i++)
-            // {
-            //     categorias[i] = gastos[i].Categoria;
-            // }
-                
-            return categorias;
-        }
         public static void InitConexao()
         {
             string info = "server=localhost;database=financas; user id=root;password=''";
@@ -44,11 +34,56 @@ namespace Repo
             conexao.Close();
         }
 
+        public static List<string> ListarCategorias()
+        {
+            InitConexao();
+
+            try
+            {
+            string nomeC = "";
+            string query = "SELECT nomeCategoria FROM categorias";
+            MySqlCommand command = new MySqlCommand(query, conexao);
+            MySqlDataReader reader = command.ExecuteReader();
+
+            while (reader.Read())
+            {
+                nomeC = reader["nomeCategoria"].ToString();
+                categorias.Add(nomeC);
+            } 
+            }
+            catch
+            {
+                MessageBox.Show("Não foi possível carregar as categorias");
+            }         
+
+            CloseConexao();
+                
+            return categorias;
+        }
+
+        public static void SincronizarIdCategoria(string categoria, int indice)
+        {
+            InitConexao();
+
+            string query = "SELECT idCategorias FROM categorias WHERE nomeCategoria = @Categoria";
+            MySqlCommand command = new MySqlCommand(query, conexao);
+            command.Parameters.AddWithValue("@Categoria", categoria);
+            MySqlDataReader reader = command.ExecuteReader();
+            Gastos gasto = gastos[indice];
+
+            while (reader.Read())
+            {
+                gasto.idCategoria = Convert.ToInt32(reader["idCategorias"].ToString());
+            }
+
+            CloseConexao();
+        }
+
         public static List<Gastos> SincronizarAdm()
         {
             InitConexao();
 
-            string query = "select * from gastos, categorias where idCategoria = idCategorias";
+            string query = "SELECT * FROM gastos, categorias WHERE idCategoria = idCategorias";
             MySqlCommand command = new MySqlCommand(query, conexao);
             MySqlDataReader reader = command.ExecuteReader();
 
@@ -71,9 +106,11 @@ namespace Repo
 
         public static void AlterarGasto(string nome, string valor, string data, string categoria, int indice)
         {
-            InitConexao();
+            SincronizarIdCategoria(categoria, indice);    
+            InitConexao();       
 
-            string update = "UPDATE gastos SET nome = @Nome, valor = @Valor, data = @Data WHERE idGastos = @IdGastos";
+
+            string update = "UPDATE gastos SET idCategoria = @IdCategoria, nome = @Nome, valor = @Valor, data = @Data WHERE idGastos = @IdGastos";
             MySqlCommand command = new MySqlCommand(update, conexao);
             Gastos gasto = gastos[indice];
 
@@ -81,12 +118,13 @@ namespace Repo
             {
                 if (nome == null || data == null || valor == null)
                 {
-                    MessageBox.Show("Gasto não encontrada");
+                    MessageBox.Show("Gasto não encontrado");
                 }
                 else
                 {
                     command.Parameters.AddWithValue("@IdUsuario", gasto.IdUsuario);
                     command.Parameters.AddWithValue("@IdGastos", gasto.IdGastos);
+                    command.Parameters.AddWithValue("@IdCategoria", gasto.idCategoria);
                     command.Parameters.AddWithValue("@Nome", nome);
                     command.Parameters.AddWithValue("@Valor", valor);
                     command.Parameters.AddWithValue("@Data", data);
@@ -96,14 +134,15 @@ namespace Repo
                     if (rowsAffected > 0)
                     {
                         gasto.Nome = nome;
-                        gasto.Valor = valor;
+                        gasto.Valor = "R$ " + valor;
                         gasto.Data = Convert.ToDateTime(data);
+                        gasto.Categoria = categoria;
+                        MessageBox.Show("Gasto alterado com sucesso!");
                     }
                     else
                     {
                         MessageBox.Show(rowsAffected.ToString());
                     }
-                    MessageBox.Show("Gasto alterado com sucesso!");
                 }
             }
             catch (Exception ex)
