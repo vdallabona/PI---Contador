@@ -18,14 +18,14 @@ namespace Model
             return RepoGastos.ListarGastos();
         }
 
+        public static List<string> ListarCategorias()
+        {
+            return RepoGastos.ListarCategorias();
+        }
+
         public static List<Gastos> Sincronizar()
         {
             return RepoGastos.SincronizarAdm();
-        }
-        
-        public static List<Gastos> SincronizarCategoria()
-        {
-            return RepoGastos.SincronizarCategoria();
         }
 
         public static void AlterarGasto(string nome, string valor, string data, string categoria, int indice)

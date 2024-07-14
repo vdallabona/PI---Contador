@@ -28,7 +28,6 @@ namespace View
         {
             List<Gastos> gastos = ControllerGastos.ListarGastos();
             ControllerGastos.Sincronizar();
-            ControllerGastos.SincronizarCategoria();
             // parentForm = parent;
             this.pnlHeader = new System.Windows.Forms.Panel();
             this.pnlDgv = new System.Windows.Forms.Panel();
@@ -268,10 +267,12 @@ namespace View
         private void Listar()
         {
             List<Gastos> gastos = ControllerGastos.ListarGastos();
+            List<string> categorias = ControllerGastos.ListarCategorias();
 
             dgvGastos.Columns.Clear();
             dgvGastos.AutoGenerateColumns = false;
             dgvGastos.DataSource = gastos;
+            cbCategoria.DataSource = categorias;
 
             dgvGastos.Columns.Add(new DataGridViewTextBoxColumn
             {

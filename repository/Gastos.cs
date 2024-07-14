@@ -7,10 +7,22 @@ namespace Repo
     {
         private static MySqlConnection conexao;
         public static List<Gastos> gastos = [];
+        public static List<string> categorias = new List<string>{};
 
         public static List<Gastos> ListarGastos()
         {
+
             return gastos;
+        }
+
+        public static List<string> ListarCategorias()
+        {
+            // for (int i = 0; i < gastos.Count; i++)
+            // {
+            //     categorias[i] = gastos[i].Categoria;
+            // }
+                
+            return categorias;
         }
         public static void InitConexao()
         {
@@ -36,45 +48,24 @@ namespace Repo
         {
             InitConexao();
 
-            string query = "SELECT * FROM gastos;";
+            string query = "select * from gastos, categorias where idCategoria = idCategorias";
             MySqlCommand command = new MySqlCommand(query, conexao);
             MySqlDataReader reader = command.ExecuteReader();
 
             while (reader.Read())
             {
                 Gastos gasto = new Gastos();
-
                 gasto.IdGastos = Convert.ToInt32(reader["idGastos"].ToString());
                 gasto.IdUsuario = Convert.ToInt32(reader["idUsuario"].ToString());
                 gasto.idCategoria = Convert.ToInt32(reader["idCategoria"].ToString());
                 gasto.Nome = reader["nome"].ToString();
-                gasto.Valor = Convert.ToString(reader["valor"].ToString());
+                gasto.Valor = "R$ " + Convert.ToString(reader["valor"].ToString());
                 gasto.Data = Convert.ToDateTime(reader["data"].ToString());
-                gasto.Categoria = "";
+                gasto.Categoria = reader["nomeCategoria"].ToString();
                 gastos.Add(gasto);
             }
 
             CloseConexao();
-            return gastos;
-        }
-
-        public static List<Gastos> SincronizarCategoria()
-        {
-            // InitConexao();
-            // string query = "SELECT nome FROM categorias WHERE idCategorias = @IdCategoria";
-            // MySqlCommand command = new MySqlCommand(query, conexao);
-            // MySqlDataReader reader = command.ExecuteReader();
-            // for (int i = 0; i < gastos.Count; i++)
-            // {
-            //     command.Parameters.AddWithValue("@IdCategoria", gastos[i].idCategoria);
-
-            //     while (reader.Read())
-            //     {
-            //         gastos[i].Categoria = reader["nome"].ToString();   
-            //     }
-            // }
-
-            // CloseConexao();
             return gastos;
         }
 
