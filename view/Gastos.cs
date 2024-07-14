@@ -10,7 +10,9 @@ namespace View
         private readonly ComboBox cbCategoria;
         private readonly TextBox inpValor;
         private readonly TextBox inpGasto;
+        private readonly MaskedTextBox inpData;
         private readonly Label lblCategoria;
+        private readonly Label lblData;
         private readonly Label lblValor;
         private readonly Label lblGasto;
         private readonly Label lblCadastro;
@@ -26,6 +28,7 @@ namespace View
         {
             List<Gastos> gastos = ControllerGastos.ListarGastos();
             ControllerGastos.Sincronizar();
+            ControllerGastos.SincronizarCategoria();
             // parentForm = parent;
             this.pnlHeader = new System.Windows.Forms.Panel();
             this.pnlDgv = new System.Windows.Forms.Panel();
@@ -34,8 +37,10 @@ namespace View
             this.lblGasto = new System.Windows.Forms.Label();
             this.lblValor = new System.Windows.Forms.Label();
             this.lblCategoria = new System.Windows.Forms.Label();
+            this.lblData = new System.Windows.Forms.Label();
             this.inpGasto = new System.Windows.Forms.TextBox();
             this.inpValor = new System.Windows.Forms.TextBox();
+            this.inpData = new System.Windows.Forms.MaskedTextBox();
             this.cbCategoria = new System.Windows.Forms.ComboBox();
             this.dgvGastos = new System.Windows.Forms.DataGridView();
             this.btnCadastrar = new System.Windows.Forms.Button();
@@ -89,7 +94,9 @@ namespace View
             this.pnlCadastro.Controls.Add(this.cbCategoria);
             this.pnlCadastro.Controls.Add(this.inpValor);
             this.pnlCadastro.Controls.Add(this.inpGasto);
+            this.pnlCadastro.Controls.Add(this.inpData);
             this.pnlCadastro.Controls.Add(this.lblCategoria);
+            this.pnlCadastro.Controls.Add(this.lblData);
             this.pnlCadastro.Controls.Add(this.lblValor);
             this.pnlCadastro.Controls.Add(this.lblGasto);
             this.pnlCadastro.Location = new System.Drawing.Point(273, 46);
@@ -102,17 +109,27 @@ namespace View
             // 
             this.lblGasto.AutoSize = true;
             this.lblGasto.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.lblGasto.Location = new System.Drawing.Point(18, 31);
+            this.lblGasto.Location = new System.Drawing.Point(11, 31);
             this.lblGasto.Name = "lblGasto";
             this.lblGasto.Size = new System.Drawing.Size(122, 18);
             this.lblGasto.TabIndex = 0;
             this.lblGasto.Text = "Nome do Gasto:";
             // 
+            // lblData
+            // 
+            this.lblData.AutoSize = true;
+            this.lblData.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.lblData.Location = new System.Drawing.Point(11, 70);
+            this.lblData.Name = "lblData";
+            this.lblData.Size = new System.Drawing.Size(122, 18);
+            this.lblData.TabIndex = 0;
+            this.lblData.Text = "Data: ";
+            // 
             // lblValor
             // 
             this.lblValor.AutoSize = true;
             this.lblValor.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.lblValor.Location = new System.Drawing.Point(18, 89);
+            this.lblValor.Location = new System.Drawing.Point(11, 110);
             this.lblValor.Name = "lblValor";
             this.lblValor.Size = new System.Drawing.Size(120, 18);
             this.lblValor.TabIndex = 0;
@@ -122,7 +139,7 @@ namespace View
             // 
             this.lblCategoria.AutoSize = true;
             this.lblCategoria.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.lblCategoria.Location = new System.Drawing.Point(18, 144);
+            this.lblCategoria.Location = new System.Drawing.Point(11, 150);
             this.lblCategoria.Name = "lblCategoria";
             this.lblCategoria.Size = new System.Drawing.Size(82, 18);
             this.lblCategoria.TabIndex = 0;
@@ -130,28 +147,37 @@ namespace View
             // 
             // inpGasto
             // 
-            this.inpGasto.Location = new System.Drawing.Point(144, 26);
+            this.inpGasto.Location = new System.Drawing.Point(152, 30);
             this.inpGasto.Name = "inpGasto";
-            this.inpGasto.Size = new System.Drawing.Size(188, 23);
+            this.inpGasto.Size = new System.Drawing.Size(188, 18);
             this.inpGasto.BorderStyle = BorderStyle.FixedSingle;
             this.inpGasto.TabIndex = 0;
             // 
+            // mskData
+            // 
+            this.inpData.Location = new Point(152, 70);
+            this.inpData.Mask = "0000/00/00";
+            this.inpData.Name = "inpData";
+            this.inpData.BorderStyle = BorderStyle.FixedSingle;
+            this.inpData.Size = new Size(100, 18);
+            this.inpData.TabIndex = 1;
+            // 
             // inpValor
             // 
-            this.inpValor.Location = new System.Drawing.Point(144, 84);
+            this.inpValor.Location = new System.Drawing.Point(152, 110);
             this.inpValor.Name = "inpValor";
             this.inpValor.Size = new System.Drawing.Size(188, 23);
             this.inpValor.BorderStyle = BorderStyle.FixedSingle;
-            this.inpValor.TabIndex = 1;
+            this.inpValor.TabIndex = 2;
             // 
             // cbCategoria
             // 
             this.cbCategoria.FormattingEnabled = true;
-            this.cbCategoria.Location = new System.Drawing.Point(144, 139);
+            this.cbCategoria.Location = new System.Drawing.Point(152, 150);
             this.cbCategoria.FlatStyle = FlatStyle.Flat;
             this.cbCategoria.Name = "cbCategoria";
             this.cbCategoria.Size = new System.Drawing.Size(188, 23);
-            this.cbCategoria.TabIndex = 2;
+            this.cbCategoria.TabIndex = 3;
             // 
             // dgvGastos
             // 
@@ -161,7 +187,7 @@ namespace View
             this.dgvGastos.Name = "dgvGastos";
             this.dgvGastos.RowTemplate.Height = 25;
             this.dgvGastos.Size = new System.Drawing.Size(897, 250);
-            this.dgvGastos.TabIndex = 2;
+            this.dgvGastos.TabIndex = 0;
             // 
             // btnCadastrar
             // 
@@ -172,7 +198,7 @@ namespace View
             this.btnCadastrar.Location = new System.Drawing.Point(528, 268);
             this.btnCadastrar.Name = "btnCadastrar";
             this.btnCadastrar.Size = new System.Drawing.Size(120, 40);
-            this.btnCadastrar.TabIndex = 3;
+            this.btnCadastrar.TabIndex = 4;
             this.btnCadastrar.Text = "Cadastrar";
             this.btnCadastrar.UseVisualStyleBackColor = true;
             this.btnCadastrar.Click += ClickCadastrar;
@@ -186,7 +212,7 @@ namespace View
             this.btnAlterar.Location = new System.Drawing.Point(389, 268);
             this.btnAlterar.Name = "btnAlterar";
             this.btnAlterar.Size = new System.Drawing.Size(120, 40);
-            this.btnAlterar.TabIndex = 4;
+            this.btnAlterar.TabIndex = 5;
             this.btnAlterar.Text = "Alterar";
             this.btnAlterar.UseVisualStyleBackColor = true;
             this.btnAlterar.Click += ClickAlterar;
@@ -200,7 +226,7 @@ namespace View
             this.btnDeletar.Location = new System.Drawing.Point(249, 268);
             this.btnDeletar.Name = "btnDeletar";
             this.btnDeletar.Size = new System.Drawing.Size(120, 40);
-            this.btnDeletar.TabIndex = 5;
+            this.btnDeletar.TabIndex = 6;
             this.btnDeletar.Text = "Deletar";
             this.btnDeletar.UseVisualStyleBackColor = true;
             this.btnDeletar.Click += ClickDeletar;
@@ -213,7 +239,7 @@ namespace View
             this.btnHome.Location = new System.Drawing.Point(12, 9);
             this.btnHome.Name = "btnHome";
             this.btnHome.Size = new System.Drawing.Size(120, 40);
-            this.btnHome.TabIndex = 6;
+            this.btnHome.TabIndex = 7;
             this.btnHome.Text = "Home";
             this.btnHome.UseVisualStyleBackColor = false;
             this.btnHome.Click += ClickHome;
@@ -285,12 +311,31 @@ namespace View
         
         private void ClickAlterar(object? sender, EventArgs e)
         {
+            int indice = dgvGastos.SelectedRows[0].Index;
 
+            if (inpGasto.Text == "" || inpValor.Text == "" || inpData.Text == "")
+            {
+                MessageBox.Show("Preencha todos os campos!");
+            }
+            else
+            {
+                ControllerGastos.AlterarGasto(inpGasto.Text, inpValor.Text, inpData.Text, cbCategoria.Text, indice);
+                inpGasto.Text = "";
+                inpValor.Text = "";
+                inpData.Text = "";
+                cbCategoria.Text = "";
+            }
+
+            Listar();
         }
         
         private void ClickDeletar(object? sender, EventArgs e)
         {
+            int indice = dgvGastos.SelectedRows[0].Index;
 
+            ControllerGastos.DeletarGasto(indice);
+
+            Listar();
         }
         
         private void ClickHome(object? sender, EventArgs e)

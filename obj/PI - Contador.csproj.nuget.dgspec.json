@@ -1,41 +1,23 @@
 {
   "format": 1,
   "restore": {
-<<<<<<< HEAD
-    "C:\\Users\\victor.ezaki\\Documents\\PI---Contador\\PI - Contador.csproj": {}
+    "C:\\Users\\Victo\\repos\\PI---Contador\\PI - Contador.csproj": {}
   },
   "projects": {
-    "C:\\Users\\victor.ezaki\\Documents\\PI---Contador\\PI - Contador.csproj": {
+    "C:\\Users\\Victo\\repos\\PI---Contador\\PI - Contador.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\victor.ezaki\\Documents\\PI---Contador\\PI - Contador.csproj",
+        "projectUniqueName": "C:\\Users\\Victo\\repos\\PI---Contador\\PI - Contador.csproj",
         "projectName": "PI - Contador",
-        "projectPath": "C:\\Users\\victor.ezaki\\Documents\\PI---Contador\\PI - Contador.csproj",
-        "packagesPath": "C:\\Users\\victor.ezaki\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\victor.ezaki\\Documents\\PI---Contador\\obj\\",
-=======
-    "C:\\Users\\wanderson.ricardo\\Downloads\\PI---Contador\\PI - Contador.csproj": {}
-  },
-  "projects": {
-    "C:\\Users\\wanderson.ricardo\\Downloads\\PI---Contador\\PI - Contador.csproj": {
-      "version": "1.0.0",
-      "restore": {
-        "projectUniqueName": "C:\\Users\\wanderson.ricardo\\Downloads\\PI---Contador\\PI - Contador.csproj",
-        "projectName": "PI - Contador",
-        "projectPath": "C:\\Users\\wanderson.ricardo\\Downloads\\PI---Contador\\PI - Contador.csproj",
-        "packagesPath": "C:\\Users\\wanderson.ricardo\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\wanderson.ricardo\\Downloads\\PI---Contador\\obj\\",
->>>>>>> 73bfe38add748af02e3c08dce6b7de9695c82007
+        "projectPath": "C:\\Users\\Victo\\repos\\PI---Contador\\PI - Contador.csproj",
+        "packagesPath": "C:\\Users\\Victo\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Victo\\repos\\PI---Contador\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-<<<<<<< HEAD
-          "C:\\Users\\victor.ezaki\\AppData\\Roaming\\NuGet\\NuGet.Config",
-=======
-          "C:\\Users\\wanderson.ricardo\\AppData\\Roaming\\NuGet\\NuGet.Config",
->>>>>>> 73bfe38add748af02e3c08dce6b7de9695c82007
+          "C:\\Users\\Victo\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
@@ -92,7 +74,7 @@
               "privateAssets": "none"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.303/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.302/PortableRuntimeIdentifierGraph.json"
         }
       }
     }
