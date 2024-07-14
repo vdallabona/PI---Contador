@@ -43,7 +43,7 @@ namespace Repo
             while (reader.Read())
             {
                 Membros membro = new Membros();
-
+                membro.IdUsuario = Convert.ToInt32(reader["idUsuario"].ToString());
                 membro.Nome = reader["nome"].ToString();
                 membro.Login = Convert.ToString(reader["Login"].ToString());
                 membro.Senha = reader["Senha"].ToString();
@@ -93,6 +93,28 @@ namespace Repo
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
+            }
+
+            CloseConexao();
+        }
+
+        public static void CriarMembro(string nome, string login, string senha)
+        {
+            InitConexao();
+
+            string query = "INSERT INTO usuarios (idFamilia, Nome, Login, Senha, adm) VALUES ('1', @Nome, @Login, @Senha, '1');";
+            MySqlCommand command = new MySqlCommand(query, conexao);
+            command.Parameters.AddWithValue("@Nome", Membros.Nome);
+            command.Parameters.AddWithValue("@Login", Membros.Login);
+            command.Parameters.AddWithValue("@Senha", Membros.Senha);
+            int rowsAffected = command.ExecuteNonQuery();
+
+            Membros.IdUsuario = Convert.ToInt32(command.LastInsertedId);
+            if(rowsAffected > 0){
+                Membros.Add(membros);
+                MessageBox.Show("Tarefa adicionada com sucesso!");
+            }else{
+                MessageBox.Show("Erro ao adicionar a tarefa");
             }
 
             CloseConexao();

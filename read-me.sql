@@ -26,12 +26,12 @@ VALUES
 
 INSERT INTO usuarios (idUsuario, idFamilia, Nome, Login, Senha, adm)
 VALUES
-("1", "1", "João", "João6969", "admin123", "0"),
-("2", "1", "Maria", "MariDragonSlayer", "JoãoTemPauPequeno", "1"),
-("3", "1", "Joaquim", "quimMinecraft", "redstone4life", "1"),
-("4", "2", "Roberto", "Roberto1998", "senha", "1"),
-("5", "2", "Anita", "AnitaSouza", "Cacto4ever", "0"),
-("6", "3", "Jenna", "JennaSantonniIII", "realeza", "0");
+("1", "1", "João", "João6969", "admin123", "1"),
+("2", "1", "Maria", "MariDragonSlayer", "JoãoTemPauPequeno", "0"),
+("3", "1", "Joaquim", "quimMinecraft", "redstone4life", "0"),
+("4", "2", "Roberto", "Roberto1998", "senha", "0"),
+("5", "2", "Anita", "AnitaSouza", "Cacto4ever", "1"),
+("6", "3", "Jenna", "JennaSantonniIII", "realeza", "1");
 
 INSERT INTO gastos (idUsuario, idCategoria, Nome, Valor, Data)
 VALUES

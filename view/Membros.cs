@@ -22,6 +22,7 @@ namespace View
 
         public ViewMembros()
         {
+            ControllerMembros.Sincronizar();
             StartPosition = FormStartPosition.CenterScreen;
             MinimumSize = new Size(800, 600);
             MaximumSize = new Size(800, 600);
@@ -160,7 +161,6 @@ namespace View
 
         private void Listar() {
             List<Membros> membros = ControllerMembros.ListarMembros();
-            ControllerMembros.Sincronizar();
             
             DataGridListar.Columns.Clear();
             DataGridListar.AutoGenerateColumns = false;
@@ -186,7 +186,12 @@ namespace View
         }
 
         private void ClickCadastrar(object? sender, EventArgs e)
-        {}
+        {
+            ControllerMembros.CriarMembro(inpUsuario.Text, inpLogin.Text, inpSenha.Text);
+            inpUsuario.Text = "";
+            inpLogin.Text = "";
+            inpSenha.Text = "";
+        }
         private void ClickAlterar(object? sender, EventArgs e)
         {
             int indice = DataGridListar.SelectedRows[0].Index;

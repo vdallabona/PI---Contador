@@ -19,6 +19,11 @@ namespace Controller
             Membros.AlterarMembro(nome, login, senha, indice);
         }
 
+        public static void CriarMembro(string nome, string login, string senha)
+        {
+            Membros.CriarMembro(nome, login, senha);
+        }
+
         public static void DeletarMembro(int indice)
         {
             Membros.DeletarMembro(indice);

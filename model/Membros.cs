@@ -26,11 +26,19 @@ namespace Model
         {
             RepoMembros.AlterarMembros(nome, login, senha, indice);
         }
+        public static void CriarMembro(string nome, string login, string senha)
+        {
+            RepoMembros.CriarMembro(nome, login, senha);
+        }
 
         public static void DeletarMembro(int indice)
         {
             RepoMembros.DeletarMembro(indice);
         }
 
+        internal static void Add(List<Membros> membros)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
