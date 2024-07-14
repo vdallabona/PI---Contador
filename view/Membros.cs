@@ -1,3 +1,6 @@
+using Controller;
+using Model;
+
 namespace View
 {
     public class ViewMembros : Form
@@ -15,6 +18,7 @@ namespace View
         private readonly Button btnHomepage;
         private readonly Panel PnlLogin;
         private readonly DataGridView DataGridListar;
+        private readonly Form parentForm;
 
         public ViewMembros()
         {
@@ -155,10 +159,12 @@ namespace View
         }
 
         private void Listar() {
-            // List<Tarefa> tarefas = ControllerTarefa.ListarTarefa();
-            // DataGridListar.Columns.Clear();
-            // DataGridListar.AutoGenerateColumns = false;
-            // DataGridListar.DataSource = tarefas;
+            List<Membros> membros = ControllerMembros.ListarMembros();
+            ControllerMembros.Sincronizar();
+            
+            DataGridListar.Columns.Clear();
+            DataGridListar.AutoGenerateColumns = false;
+            DataGridListar.DataSource = membros;
 
             DataGridListar.Columns.Add(new DataGridViewTextBoxColumn{
                 HeaderText = "Nome",
@@ -182,10 +188,36 @@ namespace View
         private void ClickCadastrar(object? sender, EventArgs e)
         {}
         private void ClickAlterar(object? sender, EventArgs e)
-        {}
+        {
+            int indice = DataGridListar.SelectedRows[0].Index;
+
+            if (inpUsuario.Text == "" || inpLogin.Text == "" || inpSenha.Text == "")
+            {
+                MessageBox.Show("Preencha todos os campos!");
+            }
+            else
+            {
+                ControllerMembros.AlterarMembro(inpUsuario.Text, inpLogin.Text, inpSenha.Text, indice);
+                inpUsuario.Text = "";
+                inpLogin.Text = "";
+                inpSenha.Text = "";
+            }
+
+            Listar();
+        }
         private void ClickDeletar(object? sender, EventArgs e)
-        {}
+        {
+            int indice = DataGridListar.SelectedRows[0].Index;
+
+            ControllerMembros.DeletarMembro(indice);
+
+            Listar();
+        }
         private void ClickHomepage(object? sender, EventArgs e)
-        {}
+        {
+            Close();
+
+            parentForm.Show();
+        }
     }
 }
