@@ -1,10 +1,17 @@
 {
   "version": 2,
-  "dgSpecHash": "EOXoc7rq67E=",
+  "dgSpecHash": "FfmNqtOyUJs=",
   "success": true,
-  "projectFilePath": "C:\\Users\\vinicius.dallabona\\Desktop\\PI---Contador\\PI - Contador.csproj",
+  "projectFilePath": "C:\\Users\\Victo\\repos\\PI---Contador\\PI - Contador.csproj",
   "expectedPackageFiles": [
-    "C:\\Users\\vinicius.dallabona\\.nuget\\packages\\mysqlconnector\\2.2.5\\mysqlconnector.2.2.5.nupkg.sha512"
+    "C:\\Users\\Victo\\.nuget\\packages\\mysqlconnector\\2.2.5\\mysqlconnector.2.2.5.nupkg.sha512"
   ],
-  "logs": []
+  "logs": [
+    {
+      "code": "Undefined",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "Problem reading the cache file C:\\Users\\Victo\\repos\\PI---Contador\\obj\\project.nuget.cache : Invalid property identifier character: <. Path 'version', line 3, position 0."
+    }
+  ]
 }
