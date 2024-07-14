@@ -314,13 +314,14 @@ namespace View
         {
             int indice = dgvGastos.SelectedRows[0].Index;
 
-            if (inpGasto.Text == "" || inpValor.Text == "" || inpData.Text == "")
+            if (inpGasto.Text == "" || inpValor.Text == "" || inpData.Text == "" || cbCategoria.Text == "")
             {
                 MessageBox.Show("Preencha todos os campos!");
             }
             else
             {
-                ControllerGastos.AlterarGasto(inpGasto.Text, inpValor.Text, inpData.Text, cbCategoria.Text, indice);
+                string categoria = cbCategoria.SelectedItem.ToString();
+                ControllerGastos.AlterarGasto(inpGasto.Text, inpValor.Text, inpData.Text, categoria, indice);
                 inpGasto.Text = "";
                 inpValor.Text = "";
                 inpData.Text = "";
