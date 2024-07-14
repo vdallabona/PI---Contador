@@ -1,3 +1,4 @@
+using Microsoft.VisualBasic;
 using Repo;
 
 namespace Model
@@ -9,7 +10,8 @@ namespace Model
         public int idCategoria {get; set;}
         public string Nome {get; set;}
         public string Valor {get; set;}
-        public string Data {get; set;}
+        public DateTime Data {get; set;}
+        public string Categoria {get; set;}
 
         public static List<Gastos> ListarGastos()
         {
@@ -18,7 +20,22 @@ namespace Model
 
         public static List<Gastos> Sincronizar()
         {
-            return RepoGastos.Sincronizar();
+            return RepoGastos.SincronizarAdm();
+        }
+        
+        public static List<Gastos> SincronizarCategoria()
+        {
+            return RepoGastos.SincronizarCategoria();
+        }
+
+        public static void AlterarGasto(string nome, string valor, string data, string categoria, int indice)
+        {
+            RepoGastos.AlterarGasto(nome, valor, data, categoria, indice);
+        }
+
+        public static void DeletarGasto(int indice)
+        {
+            RepoGastos.DeletarGasto(indice);
         }
 
     }
