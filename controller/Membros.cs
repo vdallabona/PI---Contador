@@ -21,7 +21,7 @@ namespace Controller
 
         public static void CriarMembro(string nome, string login, string senha)
         {
-            Membros.CriarMembro(nome, login, senha);
+            new Membros(nome, login, senha);
         }
 
         public static void DeletarMembro(int indice)

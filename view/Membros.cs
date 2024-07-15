@@ -23,6 +23,7 @@ namespace View
         public ViewMembros()
         {
             ControllerMembros.Sincronizar();
+
             StartPosition = FormStartPosition.CenterScreen;
             MinimumSize = new Size(800, 600);
             MaximumSize = new Size(800, 600);
@@ -188,6 +189,7 @@ namespace View
         private void ClickCadastrar(object? sender, EventArgs e)
         {
             ControllerMembros.CriarMembro(inpUsuario.Text, inpLogin.Text, inpSenha.Text);
+            Listar();
             inpUsuario.Text = "";
             inpLogin.Text = "";
             inpSenha.Text = "";
@@ -203,6 +205,7 @@ namespace View
             else
             {
                 ControllerMembros.AlterarMembro(inpUsuario.Text, inpLogin.Text, inpSenha.Text, indice);
+                Listar();
                 inpUsuario.Text = "";
                 inpLogin.Text = "";
                 inpSenha.Text = "";

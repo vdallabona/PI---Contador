@@ -5,7 +5,7 @@ namespace Repo
 {
     public class RepoMembros
     {
-        private static MySqlConnection conexao;
+        private static MySqlConnection? conexao;
         public static List<Membros> membros = [];
 
         public static List<Membros> ListarMembros()
@@ -86,7 +86,7 @@ namespace Repo
                     }
                     else
                     {
-                        MessageBox.Show(rowsAffected.ToString());
+                        MessageBox.Show("Erro ao alterar membro");
                     }
                 }
             }
@@ -98,24 +98,19 @@ namespace Repo
             CloseConexao();
         }
 
-        public static void CriarMembro(string nome, string login, string senha)
+        public static void CriarMembro(Membros membro)
         {
             InitConexao();
 
             string query = "INSERT INTO usuarios (idFamilia, Nome, Login, Senha, adm) VALUES ('1', @Nome, @Login, @Senha, '1');";
             MySqlCommand command = new MySqlCommand(query, conexao);
-            command.Parameters.AddWithValue("@Nome", Membros.Nome);
-            command.Parameters.AddWithValue("@Login", Membros.Login);
-            command.Parameters.AddWithValue("@Senha", Membros.Senha);
-            int rowsAffected = command.ExecuteNonQuery();
-
-            Membros.IdUsuario = Convert.ToInt32(command.LastInsertedId);
-            if(rowsAffected > 0){
-                Membros.Add(membros);
-                MessageBox.Show("Tarefa adicionada com sucesso!");
-            }else{
-                MessageBox.Show("Erro ao adicionar a tarefa");
-            }
+            command.Parameters.AddWithValue("@Nome", membro.Nome);
+            command.Parameters.AddWithValue("@Login", membro.Login);
+            command.Parameters.AddWithValue("@Senha", membro.Senha);
+            membro.idFamilia = '1';
+            command.ExecuteNonQuery();
+            membros.Add(membro);
+            MessageBox.Show("Tarefa adicionada com sucesso!");
 
             CloseConexao();
         }
@@ -141,5 +136,6 @@ namespace Repo
 
             CloseConexao();
         }
+
     }
 }

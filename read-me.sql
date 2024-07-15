@@ -5,8 +5,6 @@ VALUES
 ("3", "Conta Água"),
 ("4", "Lazer");
 
-
-
 INSERT INTO familia (idFamilia, nomeFamilia)
 VALUES
 ("1", "Santos"),
@@ -23,7 +21,6 @@ VALUES
 ("5", "1", "2"),
 ("6", "1", "3");
 
-
 INSERT INTO usuarios (idUsuario, idFamilia, Nome, Login, Senha, adm)
 VALUES
 ("1", "1", "João", "João6969", "admin123", "1"),
@@ -39,4 +36,3 @@ VALUES
 ("4", "3", "Conta água 01/2024", "450.20", "2024-01-29"),
 ("6", "1", "Filé minginhon 5 estrelas", "99.99", "2024-04-12"),
 ("5", "4", "Show da Annita", "300.00", "2024-06-22");
-

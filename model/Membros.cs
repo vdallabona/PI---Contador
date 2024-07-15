@@ -5,12 +5,22 @@ namespace Model
 {
     public class Membros
     {
+
         public int IdUsuario {get; set;}
         public int idFamilia {get; set;}
         public string? Nome {get; set;}
         public string? Login {get; set;}
         public string? Senha {get; set;}
         public int adm {get; set;}
+
+        public Membros(){}
+        public Membros(string nome, string login, string senha){
+            Nome = nome;
+            Login = login;
+            Senha = senha;
+            RepoMembros.CriarMembro(this);
+        }
+
 
         public static List<Membros> ListarMembros()
         {
@@ -26,19 +36,11 @@ namespace Model
         {
             RepoMembros.AlterarMembros(nome, login, senha, indice);
         }
-        public static void CriarMembro(string nome, string login, string senha)
-        {
-            RepoMembros.CriarMembro(nome, login, senha);
-        }
 
         public static void DeletarMembro(int indice)
         {
             RepoMembros.DeletarMembro(indice);
         }
 
-        internal static void Add(List<Membros> membros)
-        {
-            throw new NotImplementedException();
-        }
     }
 }
