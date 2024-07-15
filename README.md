@@ -1,45 +1,3 @@
-CREATE TABLE `gastos`(
-    `idGastos` INT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
-    `idUsuario` INT UNSIGNED NOT NULL,
-    `idCategoria` INT UNSIGNED NOT NULL,
-    `Nome` VARCHAR(255) NOT NULL,
-    `Valor` DECIMAL(8, 2) NOT NULL,
-    `Data` DATE NOT NULL
-);
-CREATE TABLE `usuarios`(
-    `idUsuario` INT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
-    `idFamilia` INT UNSIGNED NOT NULL,
-    `Nome` VARCHAR(255) NOT NULL,
-    `Login` VARCHAR(255) NOT NULL,
-    `Senha` VARCHAR(255) NOT NULL,
-    `adm` BOOLEAN NOT NULL
-);
-CREATE TABLE `familia`(
-    `idFamilia` INT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
-    `nomeFamilia` VARCHAR(255) NOT NULL
-);
-CREATE TABLE `categorias`(
-    `idCategorias` INT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
-    `Nome` VARCHAR(255) NOT NULL
-);
-CREATE TABLE `familiaCategorias`(
-    `idFamiliaCategorias` INT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
-    `idFamilia` INT UNSIGNED NOT NULL,
-    `idCategorias` INT UNSIGNED NOT NULL
-);
-ALTER TABLE
-    `gastos` ADD CONSTRAINT `gastos_idusuario_foreign` FOREIGN KEY(`idUsuario`) REFERENCES `usuarios`(`idUsuario`);
-ALTER TABLE
-    `gastos` ADD CONSTRAINT `gastos_idcategoria_foreign` FOREIGN KEY(`idCategoria`) REFERENCES `categorias`(`idCategorias`);
-ALTER TABLE
-    `familiaCategorias` ADD CONSTRAINT `familiacategorias_idfamilia_foreign` FOREIGN KEY(`idFamilia`) REFERENCES `familia`(`idFamilia`);
-ALTER TABLE
-    `familiaCategorias` ADD CONSTRAINT `familiacategorias_idcategorias_foreign` FOREIGN KEY(`idCategorias`) REFERENCES `categorias`(`idCategorias`);
-ALTER TABLE
-    `usuarios` ADD CONSTRAINT `usuarios_idfamilia_foreign` FOREIGN KEY(`idFamilia`) REFERENCES `familia`(`idFamilia`);
-
----------------------------- INSERT ---------------------------- INSERT ---------------------------- INSERT ---------------------------- INSERT ---------------------------- INSERT 
-
 INSERT INTO categorias (idCategorias, Nome)
 VALUES
 ("1", "Alimentos"),
@@ -68,12 +26,12 @@ VALUES
 
 INSERT INTO usuarios (idUsuario, idFamilia, Nome, Login, Senha, adm)
 VALUES
-("1", "1", "João", "João6969", "admin123", "0"),
-("2", "1", "Maria", "MariDragonSlayer", "JoãoTemPauPequeno", "1"),
-("3", "1", "Joaquim", "quimMinecraft", "redstone4life", "1"),
-("4", "2", "Roberto", "Roberto1998", "senha", "1"),
-("5", "2", "Anita", "AnitaSouza", "Cacto4ever", "0"),
-("6", "3", "Jenna", "JennaSantonniIII", "realeza", "0");
+("1", "1", "João", "João6969", "admin123", "1"),
+("2", "1", "Maria", "MariDragonSlayer", "JoãoTemPauPequeno", "0"),
+("3", "1", "Joaquim", "quimMinecraft", "redstone4life", "0"),
+("4", "2", "Roberto", "Roberto1998", "senha", "0"),
+("5", "2", "Anita", "AnitaSouza", "Cacto4ever", "1"),
+("6", "3", "Jenna", "JennaSantonniIII", "realeza", "1");
 
 INSERT INTO gastos (idUsuario, idCategoria, Nome, Valor, Data)
 VALUES
