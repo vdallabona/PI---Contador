@@ -307,7 +307,21 @@ namespace View
     
         private void ClickCadastrar(object? sender, EventArgs e)
         {
+            if (inpGasto.Text == "" || inpValor.Text == "" || inpData.Text == "" || cbCategoria.Text == "")
+            {
+                MessageBox.Show("Preencha todos os campos!");
+            }
+            else
+            {
+                string categoria = cbCategoria.SelectedItem.ToString();
+                ControllerGastos.CriarGasto(inpGasto.Text, inpValor.Text, inpData.Text, categoria);
+                inpGasto.Text = "";
+                inpValor.Text = "";
+                inpData.Text = "";
+                cbCategoria.Text = "";
+            }
 
+            Listar();
         }
         
         private void ClickAlterar(object? sender, EventArgs e)

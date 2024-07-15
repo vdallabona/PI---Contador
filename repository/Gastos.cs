@@ -61,24 +61,6 @@ namespace Repo
             return categorias;
         }
 
-        public static void SincronizarIdCategoria(string categoria, int indice)
-        {
-            InitConexao();
-
-            string query = "SELECT idCategorias FROM categorias WHERE nomeCategoria = @Categoria";
-            MySqlCommand command = new MySqlCommand(query, conexao);
-            command.Parameters.AddWithValue("@Categoria", categoria);
-            MySqlDataReader reader = command.ExecuteReader();
-            Gastos gasto = gastos[indice];
-
-            while (reader.Read())
-            {
-                gasto.idCategoria = Convert.ToInt32(reader["idCategorias"].ToString());
-            }
-
-            CloseConexao();
-        }
-
         public static List<Gastos> SincronizarAdm()
         {
             InitConexao();
@@ -102,6 +84,68 @@ namespace Repo
 
             CloseConexao();
             return gastos;
+        }
+
+        public static void CriarGasto(Gastos gasto)
+        {
+            InitConexao();
+
+            string insert = "INSERT INTO gastos(idUsuario, idCategoria, nome, valor, data) VALUES(@IdUsuario, @IdCategoria, @Nome, @Valor, @Data)";
+            MySqlCommand command = new MySqlCommand(insert, conexao);
+
+            try
+            {
+                if (gasto.Nome == null || gasto.Valor == null || gasto.Data == null || gasto.Categoria == null)
+                {
+                    MessageBox.Show("Preencha todos os campos");
+                }
+                else
+                {
+                    command.Parameters.AddWithValue("@Nome", gasto.Nome);
+                    command.Parameters.AddWithValue("@Valor", gasto.Valor);
+                    command.Parameters.AddWithValue("@Data", gasto.Data);
+                    command.Parameters.AddWithValue("@Categoria", gasto.Categoria);
+                    command.Parameters.AddWithValue("@IdUsuario", 1);
+                    command.Parameters.AddWithValue("@IdCategoria", 1);
+
+                    int rowsAffected = command.ExecuteNonQuery();
+                    gasto.IdGastos = Convert.ToInt32(command.LastInsertedId);
+
+                    if (rowsAffected > 0)
+                    {
+                        MessageBox.Show("Gasto cadastrado com sucesso!");
+                        gastos.Add(gasto);
+                    }
+                    else
+                    {
+                        MessageBox.Show("Não foi possível cadastrar o gasto");
+                    }
+                }
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show(e.Message);
+            }
+
+            CloseConexao();
+        }
+
+        public static void SincronizarIdCategoria(string categoria, int indice)
+        {
+            InitConexao();
+
+            string query = "SELECT idCategorias FROM categorias WHERE nomeCategoria = @Categoria";
+            MySqlCommand command = new MySqlCommand(query, conexao);
+            command.Parameters.AddWithValue("@Categoria", categoria);
+            MySqlDataReader reader = command.ExecuteReader();
+            Gastos gasto = gastos[indice];
+
+            while (reader.Read())
+            {
+                gasto.idCategoria = Convert.ToInt32(reader["idCategorias"].ToString());
+            }
+
+            CloseConexao();
         }
 
         public static void AlterarGasto(string nome, string valor, string data, string categoria, int indice)
