@@ -128,21 +128,3 @@ C:\Users\Pichau\Documents\estudo e projetos\projetos\C#\PI\backup\newest\PI---Co
 C:\Users\Pichau\Documents\estudo e projetos\projetos\C#\PI\backup\newest\PI---Contador\obj\Debug\net8.0-windows\PI - Contador.pdb
 C:\Users\Pichau\Documents\estudo e projetos\projetos\C#\PI\backup\newest\PI---Contador\obj\Debug\net8.0-windows\PI - Contador.genruntimeconfig.cache
 C:\Users\Pichau\Documents\estudo e projetos\projetos\C#\PI\backup\newest\PI---Contador\obj\Debug\net8.0-windows\ref\PI - Contador.dll
-C:\Users\Pichau\Documents\estudo e projetos\projetos\C#\PI\teste\PI---Contador\bin\Debug\net8.0-windows\PI - Contador.exe
-C:\Users\Pichau\Documents\estudo e projetos\projetos\C#\PI\teste\PI---Contador\bin\Debug\net8.0-windows\PI - Contador.deps.json
-C:\Users\Pichau\Documents\estudo e projetos\projetos\C#\PI\teste\PI---Contador\bin\Debug\net8.0-windows\PI - Contador.runtimeconfig.json
-C:\Users\Pichau\Documents\estudo e projetos\projetos\C#\PI\teste\PI---Contador\bin\Debug\net8.0-windows\PI - Contador.dll
-C:\Users\Pichau\Documents\estudo e projetos\projetos\C#\PI\teste\PI---Contador\bin\Debug\net8.0-windows\PI - Contador.pdb
-C:\Users\Pichau\Documents\estudo e projetos\projetos\C#\PI\teste\PI---Contador\bin\Debug\net8.0-windows\MySqlConnector.dll
-C:\Users\Pichau\Documents\estudo e projetos\projetos\C#\PI\teste\PI---Contador\obj\Debug\net8.0-windows\PI - Contador.csproj.AssemblyReference.cache
-C:\Users\Pichau\Documents\estudo e projetos\projetos\C#\PI\teste\PI---Contador\obj\Debug\net8.0-windows\PI - Contador.GeneratedMSBuildEditorConfig.editorconfig
-C:\Users\Pichau\Documents\estudo e projetos\projetos\C#\PI\teste\PI---Contador\obj\Debug\net8.0-windows\PI - Contador.AssemblyInfoInputs.cache
-C:\Users\Pichau\Documents\estudo e projetos\projetos\C#\PI\teste\PI---Contador\obj\Debug\net8.0-windows\PI - Contador.AssemblyInfo.cs
-C:\Users\Pichau\Documents\estudo e projetos\projetos\C#\PI\teste\PI---Contador\obj\Debug\net8.0-windows\PI - Contador.csproj.CoreCompileInputs.cache
-C:\Users\Pichau\Documents\estudo e projetos\projetos\C#\PI\teste\PI---Contador\obj\Debug\net8.0-windows\PI - Contador.sourcelink.json
-C:\Users\Pichau\Documents\estudo e projetos\projetos\C#\PI\teste\PI---Contador\obj\Debug\net8.0-windows\PI - Con.8B8DA394.Up2Date
-C:\Users\Pichau\Documents\estudo e projetos\projetos\C#\PI\teste\PI---Contador\obj\Debug\net8.0-windows\PI - Contador.dll
-C:\Users\Pichau\Documents\estudo e projetos\projetos\C#\PI\teste\PI---Contador\obj\Debug\net8.0-windows\refint\PI - Contador.dll
-C:\Users\Pichau\Documents\estudo e projetos\projetos\C#\PI\teste\PI---Contador\obj\Debug\net8.0-windows\PI - Contador.pdb
-C:\Users\Pichau\Documents\estudo e projetos\projetos\C#\PI\teste\PI---Contador\obj\Debug\net8.0-windows\PI - Contador.genruntimeconfig.cache
-C:\Users\Pichau\Documents\estudo e projetos\projetos\C#\PI\teste\PI---Contador\obj\Debug\net8.0-windows\ref\PI - Contador.dll
