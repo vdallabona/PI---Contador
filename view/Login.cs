@@ -1,6 +1,6 @@
 namespace View
 {
-    public class ViewContador : Form
+    public class ViewLogin : Form
     {
         private readonly Label lblTituloLogin;
         private readonly Label lblLogin;
@@ -11,7 +11,7 @@ namespace View
         private readonly Button btnCadastrar;
         private readonly Panel PnlLogin;
 
-        public ViewContador()
+        public ViewLogin()
         {
             
             StartPosition = FormStartPosition.CenterScreen;
@@ -125,7 +125,7 @@ namespace View
             }
 
             Hide();
-            new ViewHome(this).Show();
+            new ViewHome().Show();
 
         }
 

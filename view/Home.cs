@@ -6,16 +6,16 @@ namespace View
 {
     public class ViewHome : Form
     {
-        private readonly Form ParentForm;
+    
         private readonly Label lblTituloHome;
         private readonly Button btnGastos;
         private readonly Button btnSair;
         private readonly Button btnEstatistica;
         private readonly Panel PnlLogin;
 
-        public ViewHome(Form parent)
+        public ViewHome()
         {
-            ParentForm = parent;
+    
             StartPosition = FormStartPosition.CenterScreen;
             MinimumSize = new Size(800, 600);
             BackColor = Color.White;
@@ -39,7 +39,7 @@ namespace View
             };
             btnGastos.Click += ClickGastos;
 
-
+           
             btnEstatistica = new Button
             {
                 Text = "Estatistica",
@@ -78,17 +78,37 @@ namespace View
 
         private void ClickGastos(object? sender, EventArgs e)
         {
+            var viewGastos = new ViewGastos();
+            // Verifica se já existe uma instância de ViewGastos
+            if (viewGastos == null || viewGastos.IsDisposed)
+            {
+                viewGastos = new ViewGastos();
+            }
 
+            
+
+            // Oculta o formulário atual
+            this.Hide();
+
+            // Exibe o formulário de Gastos
+            viewGastos.Show();
         }
         private void ClickEstatistica(object? sender, EventArgs e)
+     
         {
-
+            MessageBox.Show("Área ainda não disponivel");
+        
         }
 
         private void ClickSair(object? sender, EventArgs e)
         {
-
+            // Fecha todos os formulários abertos
+            foreach (Form form in Application.OpenForms)
+            {
+                form.Close();
+            }
         }
 
     }
+
 }

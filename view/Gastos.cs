@@ -22,7 +22,7 @@ namespace View
         private readonly Button btnCadastrar;
         private readonly Button btnHome;
         private readonly DataGridView dgvGastos;
-        private readonly Form parentForm;
+       
 
         public ViewGastos()
         {
@@ -340,9 +340,9 @@ namespace View
         
         private void ClickHome(object? sender, EventArgs e)
         {
-            Close();
+            Hide();
 
-            parentForm.Show();
+            new ViewHome().Show();
         }
     }
 }
