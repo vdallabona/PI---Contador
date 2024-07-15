@@ -19,6 +19,16 @@ namespace Controller
             return Gastos.Sincronizar();
         }
 
+        public static void CriarGasto(string nome, string valor, string data, string categoria)
+        {
+            new Gastos(
+                nome,
+                valor,
+                data,
+                categoria
+            );
+        }
+
         public static void AlterarGasto(string nome, string valor, string data, string categoria, int indice)
         {
             Gastos.AlterarGasto(nome, valor, data, categoria, indice);
