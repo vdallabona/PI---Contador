@@ -14,9 +14,9 @@ namespace View
         private readonly Button btnEstatisticas;
         private readonly Button btnSair;
 
-        public ViewHomeAdm(Form parent)
+        public ViewHomeAdm()
         {
-            ParentForm = parent;
+            // ParentForm = parent;
             StartPosition = FormStartPosition.CenterScreen;
             MinimumSize = new Size(800, 600);
             BackColor = Color.White;
@@ -95,31 +95,35 @@ namespace View
 
         private void ClickMembros(object? sender, EventArgs e)
         {
-            
+            // Hide();
+            // new ViewMembros(this).Show(); 
         }
 
         private void ClickCategorias(object? sender, EventArgs e)
         {
-
+            // Hide();
+            // new ViewCategorias(this).Show();
         }
 
         private void ClickGastos(object? sender, EventArgs e)
         {
-
+            // Hide();
+            // new Viewgastos(this).Show();
         }
 
         private void ClickEstatisticas(object? sender, EventArgs e)
         {
-            
+            // Hide();
+            // new ViewEstatisticas(this).Show();
         }
 
         private void ClickSair(object? sender, EventArgs e)
         {
-            DialogResult dialogResult = MessageBox.Show("Tem certeza que deseja sair?", "Sair");
-            if (dialogResult == DialogResult.Yes)
-            {
-                Application.Exit();
-            }
+            // DialogResult dialogResult = MessageBox.Show("Tem certeza que deseja sair?", "Sair");
+            // if (dialogResult == DialogResult.Yes)
+            // {
+            //     Application.Exit();
+            // }
 
         }
     }
