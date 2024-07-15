@@ -1,24 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\osvaldo.junior1\\OneDrive - SENAC-SC\\C#\\PI\\PI---Contador-main\\PI - Contador.csproj": {}
+    "C:\\Users\\Pichau\\Documents\\estudo e projetos\\projetos\\C#\\PI\\PI---Contador\\PI - Contador.csproj": {}
   },
   "projects": {
-    "C:\\Users\\osvaldo.junior1\\OneDrive - SENAC-SC\\C#\\PI\\PI---Contador-main\\PI - Contador.csproj": {
+    "C:\\Users\\Pichau\\Documents\\estudo e projetos\\projetos\\C#\\PI\\PI---Contador\\PI - Contador.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\osvaldo.junior1\\OneDrive - SENAC-SC\\C#\\PI\\PI---Contador-main\\PI - Contador.csproj",
+        "projectUniqueName": "C:\\Users\\Pichau\\Documents\\estudo e projetos\\projetos\\C#\\PI\\PI---Contador\\PI - Contador.csproj",
         "projectName": "PI - Contador",
-        "projectPath": "C:\\Users\\osvaldo.junior1\\OneDrive - SENAC-SC\\C#\\PI\\PI---Contador-main\\PI - Contador.csproj",
-        "packagesPath": "C:\\Users\\osvaldo.junior1\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\osvaldo.junior1\\OneDrive - SENAC-SC\\C#\\PI\\PI---Contador-main\\obj\\",
+        "projectPath": "C:\\Users\\Pichau\\Documents\\estudo e projetos\\projetos\\C#\\PI\\PI---Contador\\PI - Contador.csproj",
+        "packagesPath": "C:\\Users\\Pichau\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Pichau\\Documents\\estudo e projetos\\projetos\\C#\\PI\\PI---Contador\\obj\\",
         "projectStyle": "PackageReference",
-        "fallbackFolders": [
-          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
-        ],
         "configFilePaths": [
-          "C:\\Users\\osvaldo.junior1\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Users\\Pichau\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -26,7 +22,6 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-          "C:\\Program Files\\dotnet\\library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -52,7 +47,7 @@
           "dependencies": {
             "MySqlConnector": {
               "target": "Package",
-              "version": "[2.3.7, )"
+              "version": "[2.2.5, )"
             }
           },
           "imports": [
