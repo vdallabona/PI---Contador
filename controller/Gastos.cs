@@ -9,14 +9,24 @@ namespace Controller
             return Gastos.ListarGastos();
         }
 
+        public static List<string> ListarCategorias()
+        {
+            return Gastos.ListarCategorias();
+        }
+
         public static List<Gastos> Sincronizar()
         {
             return Gastos.Sincronizar();
         }
-       
-        public static List<Gastos> SincronizarCategoria()
+
+        public static void CriarGasto(string nome, string valor, string data, string categoria)
         {
-            return Gastos.SincronizarCategoria();
+            new Gastos(
+                nome,
+                valor,
+                data,
+                categoria
+            );
         }
 
         public static void AlterarGasto(string nome, string valor, string data, string categoria, int indice)
