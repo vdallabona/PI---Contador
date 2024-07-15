@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("PI - Contador")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+49187f01b7aff3d41d4b3d7717059e52b70a7085")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+1f119299e5d9201e206c8984723bc0d9fd7e932e")]
 [assembly: System.Reflection.AssemblyProductAttribute("PI - Contador")]
 [assembly: System.Reflection.AssemblyTitleAttribute("PI - Contador")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
