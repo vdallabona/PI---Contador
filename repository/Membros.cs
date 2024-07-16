@@ -7,7 +7,6 @@ namespace Repo
     {
         private static MySqlConnection? conexao;
         public static List<Membros> membros = [];
-
         public static List<Membros> ListarMembros()
         {
             return membros;
@@ -49,7 +48,6 @@ namespace Repo
                 membro.Senha = reader["Senha"].ToString();
                 membros.Add(membro);
             }
-
             CloseConexao();
             return membros;
         }
@@ -127,7 +125,7 @@ namespace Repo
         {
             InitConexao();
 
-            string delete = "DELETE FROM usuarios WHERE idUsuario = @IdUsuario";
+            string delete = "UPDATE usuarios SET Login = 'USUARIO DELETADO', Senha = '' WHERE idUsuario = @idUsuario";
             MySqlCommand command = new MySqlCommand(delete, conexao);
             command.Parameters.AddWithValue("@IdUsuario", membros[indice].IdUsuario);
 
@@ -144,6 +142,5 @@ namespace Repo
 
             CloseConexao();
         }
-
     }
 }
