@@ -104,13 +104,21 @@ namespace Repo
 
             string query = "INSERT INTO usuarios (idFamilia, Nome, Login, Senha, adm) VALUES ('1', @Nome, @Login, @Senha, '1');";
             MySqlCommand command = new MySqlCommand(query, conexao);
-            command.Parameters.AddWithValue("@Nome", membro.Nome);
-            command.Parameters.AddWithValue("@Login", membro.Login);
-            command.Parameters.AddWithValue("@Senha", membro.Senha);
-            membro.idFamilia = '1';
-            command.ExecuteNonQuery();
-            membros.Add(membro);
-            MessageBox.Show("Tarefa adicionada com sucesso!");
+
+            if (membro.Nome == "" || membro.Login == "" || membro.Senha == "")
+            {
+                MessageBox.Show("Preencha todos os campos");
+            }
+            else
+            {
+                command.Parameters.AddWithValue("@Nome", membro.Nome);
+                command.Parameters.AddWithValue("@Login", membro.Login);
+                command.Parameters.AddWithValue("@Senha", membro.Senha);
+                membro.idFamilia = '1';
+                command.ExecuteNonQuery();
+                membros.Add(membro);
+                MessageBox.Show("Tarefa adicionada com sucesso!");
+            }
 
             CloseConexao();
         }
