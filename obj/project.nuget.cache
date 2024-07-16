@@ -1,10 +1,11 @@
 {
   "version": 2,
-  "dgSpecHash": "sYczcyiTqh6p0zcRKWV5vt4KF4qdm/nB1qlkAsB3eM2YV8oq30QNqxIDw+9PLJS06kebmTUj6OyM9mREzTvb6A==",
+  "dgSpecHash": "fMlRD8GZovI+lT1hOKZQlpUgGBl8PKY4X2r/iIw67VT7Hp8+zZtYKyjWyTMbOHTCI8YqFoN1FBZqOxUzudg6ow==",
   "success": true,
-  "projectFilePath": "C:\\Users\\Pichau\\Documents\\estudo e projetos\\projetos\\C#\\PI\\teste\\PI---Contador\\PI - Contador.csproj",
+  "projectFilePath": "C:\\Users\\osvaldo.junior1\\OneDrive - SENAC-SC\\C#\\PI\\PI---Contador\\PI - Contador.csproj",
   "expectedPackageFiles": [
-    "C:\\Users\\Pichau\\.nuget\\packages\\mysqlconnector\\2.2.5\\mysqlconnector.2.2.5.nupkg.sha512"
+    "C:\\Users\\osvaldo.junior1\\.nuget\\packages\\microsoft.extensions.logging.abstractions\\7.0.1\\microsoft.extensions.logging.abstractions.7.0.1.nupkg.sha512",
+    "C:\\Users\\osvaldo.junior1\\.nuget\\packages\\mysqlconnector\\2.3.7\\mysqlconnector.2.3.7.nupkg.sha512"
   ],
   "logs": []
 }
