@@ -28,7 +28,6 @@ namespace View
         {
             List<Gastos> gastos = ControllerGastos.ListarGastos();
             ControllerGastos.Sincronizar();
-            ControllerGastos.SincronizarCategoria();
             // parentForm = parent;
             this.pnlHeader = new System.Windows.Forms.Panel();
             this.pnlDgv = new System.Windows.Forms.Panel();
@@ -268,10 +267,12 @@ namespace View
         private void Listar()
         {
             List<Gastos> gastos = ControllerGastos.ListarGastos();
+            List<string> categorias = ControllerGastos.ListarCategorias();
 
             dgvGastos.Columns.Clear();
             dgvGastos.AutoGenerateColumns = false;
             dgvGastos.DataSource = gastos;
+            cbCategoria.DataSource = categorias;
 
             dgvGastos.Columns.Add(new DataGridViewTextBoxColumn
             {
@@ -306,20 +307,35 @@ namespace View
     
         private void ClickCadastrar(object? sender, EventArgs e)
         {
+            if (inpGasto.Text == "" || inpValor.Text == "" || inpData.Text == "" || cbCategoria.Text == "")
+            {
+                MessageBox.Show("Preencha todos os campos!");
+            }
+            else
+            {
+                string categoria = cbCategoria.SelectedItem.ToString();
+                ControllerGastos.CriarGasto(inpGasto.Text, inpValor.Text, inpData.Text, categoria);
+                inpGasto.Text = "";
+                inpValor.Text = "";
+                inpData.Text = "";
+                cbCategoria.Text = "";
+            }
 
+            Listar();
         }
         
         private void ClickAlterar(object? sender, EventArgs e)
         {
             int indice = dgvGastos.SelectedRows[0].Index;
 
-            if (inpGasto.Text == "" || inpValor.Text == "" || inpData.Text == "")
+            if (inpGasto.Text == "" || inpValor.Text == "" || inpData.Text == "" || cbCategoria.Text == "")
             {
                 MessageBox.Show("Preencha todos os campos!");
             }
             else
             {
-                ControllerGastos.AlterarGasto(inpGasto.Text, inpValor.Text, inpData.Text, cbCategoria.Text, indice);
+                string categoria = cbCategoria.SelectedItem.ToString();
+                ControllerGastos.AlterarGasto(inpGasto.Text, inpValor.Text, inpData.Text, categoria, indice);
                 inpGasto.Text = "";
                 inpValor.Text = "";
                 inpData.Text = "";
