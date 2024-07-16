@@ -13,19 +13,32 @@ namespace Model
         public DateTime Data {get; set;}
         public string Categoria {get; set;}
 
+        public Gastos()
+        {
+            
+        }
+        public Gastos(string nome, string valor, string data, string categoria)
+        {
+            Nome = nome;
+            Valor = valor;
+            Data = Convert.ToDateTime(data);
+            Categoria = categoria;
+            RepoGastos.CriarGasto(this);
+        }
+
         public static List<Gastos> ListarGastos()
         {
             return RepoGastos.ListarGastos();
         }
 
+        public static List<string> ListarCategorias()
+        {
+            return RepoGastos.ListarCategorias();
+        }
+
         public static List<Gastos> Sincronizar()
         {
             return RepoGastos.SincronizarAdm();
-        }
-        
-        public static List<Gastos> SincronizarCategoria()
-        {
-            return RepoGastos.SincronizarCategoria();
         }
 
         public static void AlterarGasto(string nome, string valor, string data, string categoria, int indice)
