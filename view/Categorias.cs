@@ -128,7 +128,7 @@ namespace View
         private void BtnHome_Click(object sender, EventArgs e)
         {
             Hide();
-            new ViewHome().Show();
+            new ViewHome(this).Show();
         }
         
 

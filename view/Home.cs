@@ -12,10 +12,11 @@ namespace View
         private readonly Button btnSair;
         private readonly Button btnEstatistica;
         private readonly Panel PnlLogin;
+        private readonly Form ParentForm;
 
-        public ViewHome()
+        public ViewHome(Form parent)
         {
-    
+            ParentForm = parent;
             StartPosition = FormStartPosition.CenterScreen;
             MinimumSize = new Size(800, 600);
             BackColor = Color.White;
