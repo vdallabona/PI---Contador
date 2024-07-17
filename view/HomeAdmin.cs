@@ -114,6 +114,7 @@ namespace View
 
         private void ClickCategorias(object? sender, EventArgs e)
         {
+<<<<<<< HEAD
             var viewCategorias = new ViewCategorias();
             // Verifica se já existe uma instância de ViewCategorias
             if (viewCategorias == null || viewCategorias.IsDisposed)
@@ -128,6 +129,10 @@ namespace View
 
             // Exibe o formulário de Gastos
             viewCategorias.Show();
+=======
+            Hide();
+            new ViewCategorias().Show(); 
+>>>>>>> 9de14f24357e6f674bf5ddb426d980e8e2463bbb
         }
 
         private void ClickGastos(object? sender, EventArgs e)

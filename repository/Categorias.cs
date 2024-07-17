@@ -59,7 +59,7 @@ namespace Repo
                 Categorias categoria = new Categorias
                 {
                     IdCategorias = Convert.ToInt32(reader["idCategorias"]),
-                    Nome = reader["nome"].ToString()
+                    Nome = reader["nomeCategoria"].ToString()
                 };
                 categorias.Add(categoria);
             }
@@ -70,7 +70,7 @@ namespace Repo
         public static void Criar(Categorias categoria)
         {
             InitConexao();
-            string insert = "INSERT INTO categorias (nome) VALUES (@Nome)";
+            string insert = "INSERT INTO categorias (nomeCategoria) VALUES (@Nome)";
             MySqlCommand command = new MySqlCommand(insert, conexao);
             try
             {
@@ -106,7 +106,7 @@ namespace Repo
         public static void UpdateCategoria(int indice, string nome)
         {
             InitConexao();
-            string query = "UPDATE categorias SET nome = @Nome WHERE IdCategorias = @IdCategorias";
+            string query = "UPDATE categorias SET nomeCategoria = @Nome WHERE IdCategorias = @IdCategorias";
             MySqlCommand command = new MySqlCommand(query, conexao);
             Categorias categoria = categorias[indice];
             try

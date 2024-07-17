@@ -7,6 +7,7 @@ namespace Repo
     {
         private static MySqlConnection conexao;
         public static List<Gastos> gastos = [];
+        List<Login>usuarioAtual = RepoLogin.usuarioAtual;
         public static List<string> categorias = new List<string>{};
 
         public static List<Gastos> ListarGastos()
@@ -67,6 +68,32 @@ namespace Repo
 
             string query = "SELECT * FROM gastos, categorias WHERE idCategoria = idCategorias";
             MySqlCommand command = new MySqlCommand(query, conexao);
+            MySqlDataReader reader = command.ExecuteReader();
+
+            while (reader.Read())
+            {
+                Gastos gasto = new Gastos();
+                gasto.IdGastos = Convert.ToInt32(reader["idGastos"].ToString());
+                gasto.IdUsuario = Convert.ToInt32(reader["idUsuario"].ToString());
+                gasto.idCategoria = Convert.ToInt32(reader["idCategoria"].ToString());
+                gasto.Nome = reader["nome"].ToString();
+                gasto.Valor = "R$ " + Convert.ToString(reader["valor"].ToString());
+                gasto.Data = Convert.ToDateTime(reader["data"].ToString());
+                gasto.Categoria = reader["nomeCategoria"].ToString();
+                gastos.Add(gasto);
+            }
+
+            CloseConexao();
+            return gastos;
+        }
+
+        public static List<Gastos> SincronizarPadrão()
+        {
+            InitConexao();
+
+            string query = "SELECT * FROM gastos, categorias WHERE idCategoria = idCategorias AND idUsuario = @IdUsuario";
+            MySqlCommand command = new MySqlCommand(query, conexao);
+            // command.Parameters.AddWithValue("@Idusuario", usuarioAtual[0].IdUsuario);
             MySqlDataReader reader = command.ExecuteReader();
 
             while (reader.Read())
