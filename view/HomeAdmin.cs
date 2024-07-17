@@ -44,7 +44,7 @@ namespace View
             btnCategorias = new Button
             {
                 Text = "Gerenciar Categorias",
-                Location = new Point(300, 200),
+                Location = new Point(300, 180),
                 Size = new Size(200, 50),
                 BackColor = Color.LightGray,
                 FlatStyle = FlatStyle.Flat,
@@ -56,9 +56,10 @@ namespace View
             btnGastos = new Button
             {
                 Text = "Gerenciar Gastos",
-                Location = new Point(300, 300),
+                Location = new Point(300, 260),
                 Size = new Size(200, 50),
                 BackColor = Color.LightGray,
+                FlatStyle = FlatStyle.Flat,
                 Font = new Font("Arial", 10)
             };
             btnGastos.Click += ClickGastos;
@@ -66,7 +67,7 @@ namespace View
             btnEstatisticas = new Button
             {
                 Text = "Estatísticas",
-                Location = new Point(300, 400),
+                Location = new Point(300, 350),
                 Size = new Size(200, 50),
                 BackColor = Color.LightGray,
                 FlatStyle = FlatStyle.Flat,
@@ -77,7 +78,7 @@ namespace View
             btnSair = new Button
             {
                 Text = "Sair",
-                Location = new Point(300, 500),
+                Location = new Point(300, 440),
                 Size = new Size(200, 50),
                 BackColor = Color.LightGray,
                 FlatStyle = FlatStyle.Flat,

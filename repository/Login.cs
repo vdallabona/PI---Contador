@@ -33,34 +33,41 @@ namespace Repo
             conexao.Close();
         }
 
-        public static void Verificar(string user, string senha)
+        public static void Verificar(string login, string senha)
         {
             InitConexao();
 
             try
             {
-                string query = "SELECT * FROM usuarios WHERE login = @User AND senha = @Senha";
+                string query = "SELECT * FROM usuarios WHERE login = @Login AND senha = @Senha";
                 MySqlCommand command = new MySqlCommand(query, conexao);
-                MessageBox.Show("1");
-                MySqlDataReader reader = command.ExecuteReader();
-                command.Parameters.AddWithValue("@Login", user);
-                MessageBox.Show(user);
+                command.Parameters.AddWithValue("@Login", login);
                 command.Parameters.AddWithValue("@Senha", senha);
-                MessageBox.Show(senha);
+                MySqlDataReader reader = command.ExecuteReader();
                 Login usuario = new Login();
 
+                while (reader.Read())
+                {
                 usuario.IdUsuario = Convert.ToInt32(reader["idUsuario"].ToString());
                 usuario.IdFamilia = Convert.ToInt32(reader["idFamilia"].ToString());
                 usuario.Nome = reader["nome"].ToString();
                 usuario.User = reader["login"].ToString();
                 usuario.Senha = reader["senha"].ToString();
                 usuario.Adm = Convert.ToBoolean(reader["adm"].ToString());
-
                 usuarioAtual.Add(usuario);
+                }
+
+                if (usuario.IdUsuario > 0)
+                {
+                    MessageBox.Show("Seja bem vindo!");
+                }
+                else
+                {
+                    MessageBox.Show("Usuário ou senha incorretos!");
+                }
             }
             catch
             {
-                MessageBox.Show("Usuário ou senha incorretos!");
             }
             CloseConexao();
         }
