@@ -356,9 +356,18 @@ namespace View
         
         private void ClickHome(object? sender, EventArgs e)
         {
-            Close();
+            List<Login> usuario = ControllerLogin.Listar();
 
-            parentForm.Show();
+            if (usuario.Count > 0 && usuario[0].Adm == true)
+            {
+                Hide();
+                new ViewHomeAdm(this).Show();
+            }
+            else if (usuario.Count > 0 && usuario[0].Adm == false)
+            {
+                Hide();
+                new ViewHome(this).Show();       
+            }
         }
     }
 }

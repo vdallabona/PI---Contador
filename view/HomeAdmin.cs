@@ -96,26 +96,61 @@ namespace View
 
         private void ClickMembros(object? sender, EventArgs e)
         {
-            // Hide();
-            // new ViewMembros(this).Show(); 
+            var viewMembros = new ViewMembros();
+            // Verifica se já existe uma instância de ViewMembros
+            if (viewMembros == null || viewMembros.IsDisposed)
+            {
+                viewMembros = new ViewMembros();
+            }
+
+            
+
+            // Oculta o formulário atual
+            this.Hide();
+
+            // Exibe o formulário de Gastos
+            viewMembros.Show();
         }
 
         private void ClickCategorias(object? sender, EventArgs e)
         {
-            // Hide();
-            // new ViewCategorias(this).Show(); 
+            var viewCategorias = new ViewCategorias();
+            // Verifica se já existe uma instância de ViewCategorias
+            if (viewCategorias == null || viewCategorias.IsDisposed)
+            {
+                viewCategorias = new ViewCategorias();
+            }
+
+            
+
+            // Oculta o formulário atual
+            this.Hide();
+
+            // Exibe o formulário de Gastos
+            viewCategorias.Show();
         }
 
         private void ClickGastos(object? sender, EventArgs e)
         {
-            // Hide();
-            // new ViewGastos(this).Show(); 
+            var viewGastos = new ViewGastos();
+            // Verifica se já existe uma instância de ViewGastos
+            if (viewGastos == null || viewGastos.IsDisposed)
+            {
+                viewGastos = new ViewGastos();
+            }
+
+            
+
+            // Oculta o formulário atual
+            this.Hide();
+
+            // Exibe o formulário de Gastos
+            viewGastos.Show();
         }
 
         private void ClickEstatisticas(object? sender, EventArgs e)
         {
-            // Hide();
-            // new ViewEstatisticas(this).Show(); 
+            MessageBox.Show("Área ainda não disponivel");
         }
 
         private void ClickSair(object? sender, EventArgs e)
@@ -123,7 +158,10 @@ namespace View
             DialogResult dialogResult = MessageBox.Show("Tem certeza que deseja sair?", "Sair");
             if (dialogResult == DialogResult.Yes)
             {
-                Application.Exit();
+                foreach (Form form in Application.OpenForms)
+                {
+                    form.Close();
+                }
             }
 
         }

@@ -216,16 +216,13 @@ namespace View
         private void ClickDeletar(object? sender, EventArgs e)
         {
             int indice = DataGridListar.SelectedRows[0].Index;
-
             ControllerMembros.DeletarMembro(indice);
-
             Listar();
         }
         private void ClickHomepage(object? sender, EventArgs e)
         {
-            Close();
-
-            parentForm.Show();
+            Hide();
+            new ViewHomeAdm(this).Show();
         }
     }
 }
