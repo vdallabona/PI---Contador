@@ -22,7 +22,6 @@ namespace View
 
         public ViewMembros()
         {
-            ControllerMembros.Sincronizar();
 
             StartPosition = FormStartPosition.CenterScreen;
             MinimumSize = new Size(800, 600);
@@ -153,28 +152,6 @@ namespace View
                 AllowUserToDeleteRows = false
             };
 
-            Controls.Add(PnlLogin);
-            Controls.Add(PnlGrid);
-            PnlLogin.Controls.Add(lblTituloMembros);
-            PnlLogin.Controls.Add(lblUsuario);
-            PnlLogin.Controls.Add(inpUsuario);
-            PnlLogin.Controls.Add(lblLogin);
-            PnlLogin.Controls.Add(inpLogin);
-            PnlLogin.Controls.Add(lblSenha);
-            PnlLogin.Controls.Add(inpSenha);
-            PnlLogin.Controls.Add(btnCadastrar);
-            PnlLogin.Controls.Add(btnAlterar);
-            PnlLogin.Controls.Add(btnDeletar);
-            Controls.Add(btnHomepage);
-            PnlGrid.Controls.Add(DataGridListar);
-            Listar();
-        }
-
-        private void Listar() {
-            List<Membros> membros = ControllerMembros.ListarMembros();
-            
-            DataGridListar.DataSource = membros;
-
             DataGridListar.Columns.Add(new DataGridViewTextBoxColumn{
                 HeaderText = "Nome",
                 DataPropertyName = "Nome",
@@ -192,6 +169,30 @@ namespace View
                 DataPropertyName = "Senha",
                 AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill
             });
+            Controls.Add(PnlLogin);
+            Controls.Add(PnlGrid);
+            PnlLogin.Controls.Add(lblTituloMembros);
+            PnlLogin.Controls.Add(lblUsuario);
+            PnlLogin.Controls.Add(inpUsuario);
+            PnlLogin.Controls.Add(lblLogin);
+            PnlLogin.Controls.Add(inpLogin);
+            PnlLogin.Controls.Add(lblSenha);
+            PnlLogin.Controls.Add(inpSenha);
+            PnlLogin.Controls.Add(btnCadastrar);
+            PnlLogin.Controls.Add(btnAlterar);
+            PnlLogin.Controls.Add(btnDeletar);
+            Controls.Add(btnHomepage);
+            PnlGrid.Controls.Add(DataGridListar);
+            ControllerMembros.Sincronizar();
+            Listar();
+        }
+
+        private void Listar() {
+            List<Membros> membros = ControllerMembros.ListarMembros();
+            
+            DataGridListar.DataSource = null;
+            DataGridListar.DataSource = membros;
+
         }
 
         private void ClickCadastrar(object? sender, EventArgs e)
@@ -202,7 +203,6 @@ namespace View
             inpUsuario.Text = ""; 
             inpLogin.Text = "";
             inpSenha.Text = "";
-            ControllerMembros.Sincronizar();
         }
         private void ClickAlterar(object? sender, EventArgs e)
         {
@@ -215,20 +215,18 @@ namespace View
             else
             {
                 ControllerMembros.AlterarMembro(inpUsuario.Text, inpLogin.Text, inpSenha.Text, indice);
+                Listar();
                 inpUsuario.Text = "";
                 inpLogin.Text = "";
                 inpSenha.Text = "";
             }
 
-            Listar();
-            ControllerMembros.Sincronizar();
         }
         private void ClickDeletar(object? sender, EventArgs e)
         {
             int indice = DataGridListar.SelectedRows[0].Index;
             ControllerMembros.DeletarMembro(indice);
             Listar();
-            ControllerMembros.Sincronizar();
         }
         private void ClickHomepage(object? sender, EventArgs e)
         {
