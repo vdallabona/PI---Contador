@@ -1,6 +1,9 @@
+using Controller;
+using Model;
+
 namespace View
 {
-    public class ViewContador : Form
+    public class ViewLogin : Form
     {
         private readonly Label lblTituloLogin;
         private readonly Label lblLogin;
@@ -11,7 +14,7 @@ namespace View
         private readonly Button btnCadastrar;
         private readonly Panel PnlLogin;
 
-        public ViewContador()
+        public ViewLogin()
         {
             
             StartPosition = FormStartPosition.CenterScreen;
@@ -124,8 +127,21 @@ namespace View
                 return;
             }
 
-            Hide();
-            new ViewHome(this).Show();
+            ControllerLogin.Verificar(inpLogin.Text, inpSenha.Text);
+
+            List<Login> usuario = ControllerLogin.Listar();
+
+            if (usuario[0].Adm == true)
+            {
+                Hide();
+                new ViewHomeAdm(this).Show();
+            }
+            else
+            {
+                Hide();
+                new ViewHome(this).Show();     
+            }
+
 
         }
 

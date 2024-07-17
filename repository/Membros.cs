@@ -7,7 +7,6 @@ namespace Repo
     {
         private static MySqlConnection? conexao;
         public static List<Membros> membros = [];
-
         public static List<Membros> ListarMembros()
         {
             return membros;
@@ -49,7 +48,6 @@ namespace Repo
                 membro.Senha = reader["Senha"].ToString();
                 membros.Add(membro);
             }
-
             CloseConexao();
             return membros;
         }
@@ -104,13 +102,21 @@ namespace Repo
 
             string query = "INSERT INTO usuarios (idFamilia, Nome, Login, Senha, adm) VALUES ('1', @Nome, @Login, @Senha, '1');";
             MySqlCommand command = new MySqlCommand(query, conexao);
-            command.Parameters.AddWithValue("@Nome", membro.Nome);
-            command.Parameters.AddWithValue("@Login", membro.Login);
-            command.Parameters.AddWithValue("@Senha", membro.Senha);
-            membro.idFamilia = '1';
-            command.ExecuteNonQuery();
-            membros.Add(membro);
-            MessageBox.Show("Tarefa adicionada com sucesso!");
+
+            if (membro.Nome == "" || membro.Login == "" || membro.Senha == "")
+            {
+                MessageBox.Show("Preencha todos os campos");
+            }
+            else
+            {
+                command.Parameters.AddWithValue("@Nome", membro.Nome);
+                command.Parameters.AddWithValue("@Login", membro.Login);
+                command.Parameters.AddWithValue("@Senha", membro.Senha);
+                membro.idFamilia = '1';
+                command.ExecuteNonQuery();
+                membros.Add(membro);
+                MessageBox.Show("Tarefa adicionada com sucesso!");
+            }
 
             CloseConexao();
         }
@@ -119,7 +125,7 @@ namespace Repo
         {
             InitConexao();
 
-            string delete = "DELETE FROM usuarios WHERE idUsuario = @IdUsuario";
+            string delete = "UPDATE usuarios SET Login = 'USUARIO DELETADO', Senha = '' WHERE idUsuario = @idUsuario";
             MySqlCommand command = new MySqlCommand(delete, conexao);
             command.Parameters.AddWithValue("@IdUsuario", membros[indice].IdUsuario);
 
@@ -136,6 +142,5 @@ namespace Repo
 
             CloseConexao();
         }
-
     }
 }

@@ -14,9 +14,9 @@ namespace View
         private readonly Button btnEstatisticas;
         private readonly Button btnSair;
 
-        public ViewHomeAdm(/*Form parent*/)
+        public ViewHomeAdm(Form parent)
         {
-            // ParentForm = parent;
+            ParentForm = parent;
             StartPosition = FormStartPosition.CenterScreen;
             MinimumSize = new Size(800, 600);
             BackColor = Color.White;
