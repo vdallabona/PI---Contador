@@ -17,8 +17,8 @@ namespace View
         private readonly Button btnDeletar;
         private readonly Button btnHomepage;
         private readonly Panel PnlLogin;
+        private readonly Panel PnlGrid;
         private readonly DataGridView DataGridListar;
-        private readonly Form parentForm;
 
         public ViewMembros()
         {
@@ -26,9 +26,8 @@ namespace View
 
             StartPosition = FormStartPosition.CenterScreen;
             MinimumSize = new Size(800, 600);
-            MaximumSize = new Size(800, 600);
             BackColor = Color.White;
-            Text = "Login";
+            Text = "Cadastro de Membros";
 
             lblTituloMembros = new Label
             {
@@ -135,16 +134,27 @@ namespace View
             {
                 MinimumSize = new Size(400, 250),
                 Dock = DockStyle.Fill,
-                Anchor = AnchorStyles.None,
+                Anchor = AnchorStyles.Top,
                 Location = new Point(this.ClientSize.Width / 2 - 200, this.ClientSize.Height / 3 - 150)
             };
 
-            DataGridListar = new DataGridView {
+            PnlGrid = new Panel
+            {
+                Size = new Size(800, 800),
                 Location = new Point(0, 300),
-                Size = new Size(800, 600)
+                AutoScroll = true
+            };
+
+            DataGridListar = new DataGridView {
+                AutoGenerateColumns = false,
+                Width = 750,
+                ReadOnly = true,
+                AllowUserToAddRows = false,
+                AllowUserToDeleteRows = false
             };
 
             Controls.Add(PnlLogin);
+            Controls.Add(PnlGrid);
             PnlLogin.Controls.Add(lblTituloMembros);
             PnlLogin.Controls.Add(lblUsuario);
             PnlLogin.Controls.Add(inpUsuario);
@@ -156,43 +166,43 @@ namespace View
             PnlLogin.Controls.Add(btnAlterar);
             PnlLogin.Controls.Add(btnDeletar);
             Controls.Add(btnHomepage);
-            Controls.Add(DataGridListar);
+            PnlGrid.Controls.Add(DataGridListar);
             Listar();
         }
 
         private void Listar() {
             List<Membros> membros = ControllerMembros.ListarMembros();
             
-            DataGridListar.Columns.Clear();
-            DataGridListar.AutoGenerateColumns = false;
             DataGridListar.DataSource = membros;
 
             DataGridListar.Columns.Add(new DataGridViewTextBoxColumn{
                 HeaderText = "Nome",
                 DataPropertyName = "Nome",
-                Width = this.ClientSize.Width / 3
+                AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill
             });
 
             DataGridListar.Columns.Add(new DataGridViewTextBoxColumn{
                 HeaderText = "Login",
                 DataPropertyName = "Login",
-                Width = this.ClientSize.Width / 3
+                AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill
             });
 
             DataGridListar.Columns.Add(new DataGridViewTextBoxColumn{
                 HeaderText = "Senha",
                 DataPropertyName = "Senha",
-                Width = this.ClientSize.Width / 3
+                AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill
             });
         }
 
         private void ClickCadastrar(object? sender, EventArgs e)
         {
+            
             ControllerMembros.CriarMembro(inpUsuario.Text, inpLogin.Text, inpSenha.Text);
             Listar();
-            inpUsuario.Text = "";
+            inpUsuario.Text = ""; 
             inpLogin.Text = "";
             inpSenha.Text = "";
+            ControllerMembros.Sincronizar();
         }
         private void ClickAlterar(object? sender, EventArgs e)
         {
@@ -205,19 +215,20 @@ namespace View
             else
             {
                 ControllerMembros.AlterarMembro(inpUsuario.Text, inpLogin.Text, inpSenha.Text, indice);
-                Listar();
                 inpUsuario.Text = "";
                 inpLogin.Text = "";
                 inpSenha.Text = "";
             }
 
             Listar();
+            ControllerMembros.Sincronizar();
         }
         private void ClickDeletar(object? sender, EventArgs e)
         {
             int indice = DataGridListar.SelectedRows[0].Index;
             ControllerMembros.DeletarMembro(indice);
             Listar();
+            ControllerMembros.Sincronizar();
         }
         private void ClickHomepage(object? sender, EventArgs e)
         {

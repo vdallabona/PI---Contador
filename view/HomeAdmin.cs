@@ -1,7 +1,3 @@
-using System;
-using System.Drawing;
-using System.Windows.Forms;
-
 namespace View
 {
     public class ViewHomeAdm : Form
@@ -103,8 +99,6 @@ namespace View
                 viewMembros = new ViewMembros();
             }
 
-            
-
             // Oculta o formulário atual
             this.Hide();
 
@@ -154,12 +148,8 @@ namespace View
             DialogResult dialogResult = MessageBox.Show("Tem certeza que deseja sair?", "Sair");
             if (dialogResult == DialogResult.Yes)
             {
-                foreach (Form form in Application.OpenForms)
-                {
-                    form.Close();
-                }
+                Close();  
             }
-
         }
     }
 }

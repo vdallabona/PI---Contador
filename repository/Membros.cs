@@ -7,6 +7,7 @@ namespace Repo
     {
         private static MySqlConnection? conexao;
         public static List<Membros> membros = [];
+        List<Login>usuarioAtual = RepoLogin.usuarioAtual;
         public static List<Membros> ListarMembros()
         {
             return membros;
@@ -33,6 +34,7 @@ namespace Repo
 
         public static List<Membros> SincronizarMembros()
         {
+            membros.Clear();
             InitConexao();
 
             string query = "SELECT * FROM usuarios;";
@@ -116,6 +118,8 @@ namespace Repo
                 command.ExecuteNonQuery();
                 membros.Add(membro);
                 MessageBox.Show("Tarefa adicionada com sucesso!");
+                MessageBox.Show(membro.Login);
+                MessageBox.Show(membro.Senha);
             }
 
             CloseConexao();
