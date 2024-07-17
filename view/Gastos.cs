@@ -354,7 +354,6 @@ namespace View
         
         private void ClickHome(object? sender, EventArgs e)
         {
-<<<<<<< HEAD
             List<Login> usuario = ControllerLogin.Listar();
 
             if (usuario.Count > 0 && usuario[0].Adm == true)
@@ -367,10 +366,6 @@ namespace View
                 Hide();
                 new ViewHome(this).Show();       
             }
-=======
-            Hide();
-            new ViewHome(this).Show();
->>>>>>> 9de14f24357e6f674bf5ddb426d980e8e2463bbb
         }
     }
 }
