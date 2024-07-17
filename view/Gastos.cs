@@ -26,9 +26,9 @@ namespace View
 
         public ViewGastos()
         {
-            List<Gastos> gastos = ControllerGastos.ListarGastos();
             ControllerGastos.Sincronizar();
             ControllerCategorias.Sincronizar();
+            ControllerMembros.Sincronizar();
             this.pnlHeader = new System.Windows.Forms.Panel();
             this.pnlDgv = new System.Windows.Forms.Panel();
             this.lblCadastro = new System.Windows.Forms.Label();
@@ -278,6 +278,12 @@ namespace View
             
             dgvGastos.Columns.Add(new DataGridViewTextBoxColumn
             {
+                HeaderText = "Nome do Membro",
+                DataPropertyName = "Membro"
+            });
+
+            dgvGastos.Columns.Add(new DataGridViewTextBoxColumn
+            {
                 HeaderText = "Nome do Gasto",
                 DataPropertyName = "Nome"
             });
@@ -314,9 +320,9 @@ namespace View
             }
             else
             {
-                string categoria = cbCategoria.SelectedText.ToString();
+                string categoria = cbCategoria.SelectedItem.ToString();
                 int id = Convert.ToInt32(cbCategoria.SelectedValue);
-                ControllerGastos.CriarGasto(inpGasto.Text, inpValor.Text, inpData.Text, categoria);
+                ControllerGastos.CriarGasto(inpGasto.Text, inpValor.Text, inpData.Text, categoria, id);
                 inpGasto.Text = "";
                 inpValor.Text = "";
                 inpData.Text = "";
