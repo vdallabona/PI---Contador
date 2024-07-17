@@ -4,9 +4,9 @@ namespace Controller
 {
     public class ControllerLogin
     {
-        public static void Verificar(string user, string senha)
+        public static void Verificar(string login, string senha)
         {
-            Login.Verificar(user, senha);
+            Login.Verificar(login, senha);
         }
         public static List<Login> Listar()
         {

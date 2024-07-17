@@ -11,9 +11,9 @@ namespace Model
         public string Senha {get; set;}
         public bool Adm {get; set;}
 
-        public static void Verificar(string user, string senha)
+        public static void Verificar(string login, string senha)
         {
-            RepoLogin.Verificar(user, senha);
+            RepoLogin.Verificar(login, senha);
         }
         public static List<Login> Listar()
         {
