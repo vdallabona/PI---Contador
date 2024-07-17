@@ -127,20 +127,21 @@ namespace View
                 return;
             }
 
+
             ControllerLogin.Verificar(inpLogin.Text, inpSenha.Text);
 
             List<Login> usuario = ControllerLogin.Listar();
 
-            if (usuario[0].Adm == true)
+            if (usuario.Count > 0 && usuario[0].Adm == true)
             {
                 Hide();
                 new ViewHomeAdm(this).Show();
             }
-            else
+            else if (usuario.Count > 0 && usuario[0].Adm == false)
             {
                 Hide();
-                new ViewHome(this).Show();     
-            }
+                new ViewHome(this).Show();       
+            }else{};
 
 
         }
