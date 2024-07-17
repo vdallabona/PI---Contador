@@ -22,13 +22,11 @@ namespace View
         private readonly Button btnCadastrar;
         private readonly Button btnHome;
         private readonly DataGridView dgvGastos;
-        private readonly Form parentForm;
 
         public ViewGastos()
         {
             List<Gastos> gastos = ControllerGastos.ListarGastos();
             ControllerGastos.Sincronizar();
-            // parentForm = parent;
             this.pnlHeader = new System.Windows.Forms.Panel();
             this.pnlDgv = new System.Windows.Forms.Panel();
             this.lblCadastro = new System.Windows.Forms.Label();
@@ -356,9 +354,8 @@ namespace View
         
         private void ClickHome(object? sender, EventArgs e)
         {
-            Close();
-
-            parentForm.Show();
+            Hide();
+            new ViewHome(this).Show();
         }
     }
 }

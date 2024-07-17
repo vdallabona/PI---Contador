@@ -102,8 +102,8 @@ namespace View
 
         private void ClickCategorias(object? sender, EventArgs e)
         {
-            // Hide();
-            // new ViewCategorias(this).Show(); 
+            Hide();
+            new ViewCategorias().Show(); 
         }
 
         private void ClickGastos(object? sender, EventArgs e)
