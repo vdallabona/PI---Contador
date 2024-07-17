@@ -18,7 +18,7 @@ namespace Model
             Nome = nome;
             Login = login;
             Senha = senha;
-            RepoMembros.CriarMembro(this);
+            RepoMembros.LoginExiste(this);
         }
 
 

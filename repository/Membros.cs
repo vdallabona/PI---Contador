@@ -1,3 +1,4 @@
+using System.Runtime.InteropServices.Marshalling;
 using Model;
 using MySqlConnector;
 
@@ -30,7 +31,7 @@ namespace Repo
         public static void CloseConexao()
         {
             conexao.Close();
-        }
+        }       
 
         public static List<Membros> SincronizarMembros()
         {
@@ -98,28 +99,41 @@ namespace Repo
             CloseConexao();
         }
 
+        public static void LoginExiste(Membros membro){
+            InitConexao();
+            string checkQuery = "SELECT COUNT(*) FROM usuarios WHERE Login = @Login;";
+            MySqlCommand checkCommand = new MySqlCommand(checkQuery, conexao);
+            checkCommand.Parameters.AddWithValue("@Login", membro.Login);
+            int count = Convert.ToInt32(checkCommand.ExecuteScalar());
+            if (count > 0)
+            {
+                MessageBox.Show("Login já existe, por favor escolha outro login.");
+                return;
+            }else{
+                CriarMembro(membro);
+            }
+            CloseConexao();
+        }
+
         public static void CriarMembro(Membros membro)
         {
             InitConexao();
-
-            string query = "INSERT INTO usuarios (idFamilia, Nome, Login, Senha, adm) VALUES ('1', @Nome, @Login, @Senha, '1');";
-            MySqlCommand command = new MySqlCommand(query, conexao);
-
             if (membro.Nome == "" || membro.Login == "" || membro.Senha == "")
             {
                 MessageBox.Show("Preencha todos os campos");
             }
             else
-            {
+            { 
+                string query = "INSERT INTO usuarios (idFamilia, Nome, Login, Senha, adm) VALUES ('1', @Nome, @Login, @Senha, '1');";
+                MySqlCommand command = new MySqlCommand(query, conexao);
                 command.Parameters.AddWithValue("@Nome", membro.Nome);
                 command.Parameters.AddWithValue("@Login", membro.Login);
                 command.Parameters.AddWithValue("@Senha", membro.Senha);
                 membro.idFamilia = '1';
+                //command.Parameters.AddWithValue("@idFamilia", membro.idFamilia);
                 command.ExecuteNonQuery();
-                membros.Add(membro);
                 MessageBox.Show("Tarefa adicionada com sucesso!");
-                MessageBox.Show(membro.Login);
-                MessageBox.Show(membro.Senha);
+                membros.Add(membro);
             }
 
             CloseConexao();
