@@ -38,8 +38,9 @@ namespace Repo
             membros.Clear();
             InitConexao();
 
-            string query = "SELECT * FROM usuarios;";
+            string query = "SELECT * FROM usuarios WHERE idFamilia = @idFamilia;";
             MySqlCommand command = new MySqlCommand(query, conexao);
+            command.Parameters.AddWithValue("@idFamilia", RepoLogin.usuarioAtual[0].IdFamilia);
             MySqlDataReader reader = command.ExecuteReader();
 
             while (reader.Read())
@@ -124,18 +125,17 @@ namespace Repo
             }
             else
             { 
-                string query = "INSERT INTO usuarios (idFamilia, Nome, Login, Senha, adm) VALUES ('1', @Nome, @Login, @Senha, '1');";
+                string query = "INSERT INTO usuarios (idFamilia, Nome, Login, Senha, adm) VALUES (@idFamilia, @Nome, @Login, @Senha, '1');";
                 MySqlCommand command = new MySqlCommand(query, conexao);
                 command.Parameters.AddWithValue("@Nome", membro.Nome);
                 command.Parameters.AddWithValue("@Login", membro.Login);
                 command.Parameters.AddWithValue("@Senha", membro.Senha);
-                membro.idFamilia = '1';
-                //command.Parameters.AddWithValue("@idFamilia", membro.idFamilia);
+                membro.idFamilia = RepoLogin.usuarioAtual[0].IdFamilia;
+                command.Parameters.AddWithValue("@idFamilia", membro.idFamilia);
                 command.ExecuteNonQuery();
-                MessageBox.Show("Tarefa adicionada com sucesso!");
                 membros.Add(membro);
+                MessageBox.Show("Tarefa adicionada com sucesso!");
             }
-
             CloseConexao();
         }
 
