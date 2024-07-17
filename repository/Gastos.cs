@@ -51,11 +51,13 @@ namespace Repo
                 Gastos gasto = new Gastos();
                 gasto.IdGastos = Convert.ToInt32(reader["idGastos"].ToString());
                 gasto.IdUsuario = Convert.ToInt32(reader["idUsuario"].ToString());
-                gasto.idCategoria = Convert.ToInt32(reader["idCategoria"].ToString());
+                gasto.IdCategoria = Convert.ToInt32(reader["I"].ToString());
                 gasto.Nome = reader["nome"].ToString();
                 gasto.Valor = "R$ " + Convert.ToString(reader["valor"].ToString());
                 gasto.Data = Convert.ToDateTime(reader["data"].ToString());
                 gasto.Categoria = reader["nomeCategoria"].ToString();
+                gasto.Membro = membros[gasto.IdUsuario].Nome;
+
                 gastos.Add(gasto);
             }
 
@@ -65,6 +67,7 @@ namespace Repo
 
         public static List<Gastos> SincronizarPadrão()
         {
+            gastos.Clear();
             InitConexao();
             string query = "SELECT * FROM gastos, categorias WHERE idCategoria = idCategorias AND idUsuario = @IdUsuario";
             MySqlCommand command = new MySqlCommand(query, conexao);
@@ -76,11 +79,12 @@ namespace Repo
                 Gastos gasto = new Gastos();
                 gasto.IdGastos = Convert.ToInt32(reader["idGastos"].ToString());
                 gasto.IdUsuario = Convert.ToInt32(reader["idUsuario"].ToString());
-                gasto.idCategoria = Convert.ToInt32(reader["idCategoria"].ToString());
+                gasto.IdCategoria = Convert.ToInt32(reader["idCategoria"].ToString());
                 gasto.Nome = reader["nome"].ToString();
                 gasto.Valor = "R$ " + Convert.ToString(reader["valor"].ToString());
                 gasto.Data = Convert.ToDateTime(reader["data"].ToString());
                 gasto.Categoria = reader["nomeCategoria"].ToString();
+                gasto.Membro = usuarioAtual[0].Nome;
 
                 gastos.Add(gasto);
             }
@@ -104,13 +108,7 @@ namespace Repo
                 }
                 else
                 {
-                    for (int i = 0; i < categorias.Count; i++)
-                    {
-                        if (categorias[i].Nome == gasto.Categoria)
-                        {  
-                            command.Parameters.AddWithValue("@IdCategoria", categorias[i].IdCategorias);
-                        }
-                    }
+                    command.Parameters.AddWithValue("@IdCategoria", gasto.IdCategoria);
                     command.Parameters.AddWithValue("@Nome", gasto.Nome);
                     command.Parameters.AddWithValue("@Valor", gasto.Valor);
                     command.Parameters.AddWithValue("@Data", gasto.Data);
@@ -119,6 +117,7 @@ namespace Repo
                     int rowsAffected = command.ExecuteNonQuery();
                     gasto.IdGastos = Convert.ToInt32(command.LastInsertedId);
                     gasto.Valor = "R$ " + gasto.Valor;
+                    gasto.Categoria = categorias[gasto.IdCategoria - 1].Nome;
 
                     if (rowsAffected > 0)
                     {
@@ -139,27 +138,8 @@ namespace Repo
             CloseConexao();
         }
 
-        public static void SincronizarIdCategoria(string categoria, int indice)
-        {
-            InitConexao();
-
-            string query = "SELECT idCategorias FROM categorias WHERE nomeCategoria = @Categoria";
-            MySqlCommand command = new MySqlCommand(query, conexao);
-            command.Parameters.AddWithValue("@Categoria", categoria);
-            MySqlDataReader reader = command.ExecuteReader();
-            Gastos gasto = gastos[indice];
-
-            while (reader.Read())
-            {
-                gasto.idCategoria = Convert.ToInt32(reader["idCategorias"].ToString());
-            }
-
-            CloseConexao();
-        }
-
         public static void AlterarGasto(string nome, string valor, string data, int id, int indice)
-        {
-            // SincronizarIdCategoria(categoria, indice);    
+        {   
             InitConexao();       
 
 
@@ -190,7 +170,7 @@ namespace Repo
                         gasto.Valor = "R$ " + valor;
                         gasto.Data = Convert.ToDateTime(data);
                         gasto.Categoria = categorias[id - 1].Nome;
-                        gasto.idCategoria = id;
+                        gasto.IdCategoria = id;
 
                         MessageBox.Show("Gasto alterado com sucesso!");
                     }
