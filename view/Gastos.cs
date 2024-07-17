@@ -1,3 +1,4 @@
+using System.Data;
 using Controller;
 using Model;
 
@@ -27,6 +28,7 @@ namespace View
         {
             List<Gastos> gastos = ControllerGastos.ListarGastos();
             ControllerGastos.Sincronizar();
+            ControllerCategorias.Sincronizar();
             this.pnlHeader = new System.Windows.Forms.Panel();
             this.pnlDgv = new System.Windows.Forms.Panel();
             this.lblCadastro = new System.Windows.Forms.Label();
@@ -265,13 +267,15 @@ namespace View
         private void Listar()
         {
             List<Gastos> gastos = ControllerGastos.ListarGastos();
-            List<string> categorias = ControllerGastos.ListarCategorias();
+            List<Categorias> categorias = ControllerCategorias.ListarCategorias();
 
             dgvGastos.Columns.Clear();
             dgvGastos.AutoGenerateColumns = false;
             dgvGastos.DataSource = gastos;
             cbCategoria.DataSource = categorias;
-
+            cbCategoria.DisplayMember = "Nome";
+            cbCategoria.ValueMember = "IdCategorias";
+            
             dgvGastos.Columns.Add(new DataGridViewTextBoxColumn
             {
                 HeaderText = "Nome do Gasto",
@@ -298,11 +302,10 @@ namespace View
 
             foreach (DataGridViewColumn column in dgvGastos.Columns)
             {
-                column.Width = this.ClientSize.Width / 4;
+                column.Width = this.ClientSize.Width / 5;
                 column.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
             }
         }
-    
         private void ClickCadastrar(object? sender, EventArgs e)
         {
             if (inpGasto.Text == "" || inpValor.Text == "" || inpData.Text == "" || cbCategoria.Text == "")
@@ -311,7 +314,8 @@ namespace View
             }
             else
             {
-                string categoria = cbCategoria.SelectedItem.ToString();
+                string categoria = cbCategoria.SelectedText.ToString();
+                int id = Convert.ToInt32(cbCategoria.SelectedValue);
                 ControllerGastos.CriarGasto(inpGasto.Text, inpValor.Text, inpData.Text, categoria);
                 inpGasto.Text = "";
                 inpValor.Text = "";
@@ -332,8 +336,8 @@ namespace View
             }
             else
             {
-                string categoria = cbCategoria.SelectedItem.ToString();
-                ControllerGastos.AlterarGasto(inpGasto.Text, inpValor.Text, inpData.Text, categoria, indice);
+                int id = Convert.ToInt32(cbCategoria.SelectedValue);
+                ControllerGastos.AlterarGasto(inpGasto.Text, inpValor.Text, inpData.Text, id, indice);
                 inpGasto.Text = "";
                 inpValor.Text = "";
                 inpData.Text = "";
