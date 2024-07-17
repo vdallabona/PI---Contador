@@ -34,7 +34,7 @@ namespace Model
 
         public static void AlterarMembro(string nome, string login, string senha, int indice)
         {
-            RepoMembros.AlterarMembros(nome, login, senha, indice);
+            RepoMembros.LoginExisteAlt(nome, login, senha, indice);
         }
 
         public static void DeletarMembro(int indice)

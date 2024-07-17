@@ -189,15 +189,12 @@ namespace View
 
         private void Listar() {
             List<Membros> membros = ControllerMembros.ListarMembros();
-            
             DataGridListar.DataSource = null;
             DataGridListar.DataSource = membros;
-
         }
 
         private void ClickCadastrar(object? sender, EventArgs e)
         {
-            
             ControllerMembros.CriarMembro(inpUsuario.Text, inpLogin.Text, inpSenha.Text);
             Listar();
             inpUsuario.Text = ""; 

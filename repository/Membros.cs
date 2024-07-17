@@ -76,7 +76,6 @@ namespace Repo
                     command.Parameters.AddWithValue("@Nome", nome);
                     command.Parameters.AddWithValue("@Login", login);
                     command.Parameters.AddWithValue("@Senha", senha);
-
                     int rowsAffected = command.ExecuteNonQuery();
 
                     if (rowsAffected > 0)
@@ -112,6 +111,21 @@ namespace Repo
                 return;
             }else{
                 CriarMembro(membro);
+            }
+            CloseConexao();
+        }
+        public static void LoginExisteAlt(string nome, string login, string senha, int indice){
+            InitConexao();
+            string checkQuery = "SELECT COUNT(*) FROM usuarios WHERE Login = @Login;";
+            MySqlCommand checkCommand = new MySqlCommand(checkQuery, conexao);
+            checkCommand.Parameters.AddWithValue("@Login", login);
+            int count = Convert.ToInt32(checkCommand.ExecuteScalar());
+            if (count > 0)
+            {
+                MessageBox.Show("Login já existe, por favor escolha outro login.");
+                return;
+            }else{
+                AlterarMembros(nome, login, senha, indice);
             }
             CloseConexao();
         }
