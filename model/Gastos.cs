@@ -7,22 +7,24 @@ namespace Model
     {
         public int IdGastos {get; set;}
         public int IdUsuario {get; set;}
-        public int idCategoria {get; set;}
+        public int IdCategoria {get; set;}
         public string Nome {get; set;}
         public string Valor {get; set;}
         public DateTime Data {get; set;}
         public string Categoria {get; set;}
+        public string Membro {get; set;}
 
         public Gastos()
         {
             
         }
-        public Gastos(string nome, string valor, string data, string categoria)
+        public Gastos(string nome, string valor, string data, string categoria, int id)
         {
             Nome = nome;
             Valor = valor;
             Data = Convert.ToDateTime(data);
             Categoria = categoria;
+            IdCategoria = id;
             RepoGastos.CriarGasto(this);
         }
 
