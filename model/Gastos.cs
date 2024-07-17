@@ -31,19 +31,22 @@ namespace Model
             return RepoGastos.ListarGastos();
         }
 
-        public static List<string> ListarCategorias()
-        {
-            return RepoGastos.ListarCategorias();
-        }
-
         public static List<Gastos> Sincronizar()
         {
-            return RepoGastos.SincronizarAdm();
+            if (RepoLogin.usuarioAtual[0].Adm == true)
+            {
+                return RepoGastos.SincronizarAdm();    
+            }
+            else
+            {
+                return RepoGastos.SincronizarPadrão();
+            }
+
         }
 
-        public static void AlterarGasto(string nome, string valor, string data, string categoria, int indice)
+        public static void AlterarGasto(string nome, string valor, string data, int id, int indice)
         {
-            RepoGastos.AlterarGasto(nome, valor, data, categoria, indice);
+            RepoGastos.AlterarGasto(nome, valor, data, id, indice);
         }
 
         public static void DeletarGasto(int indice)

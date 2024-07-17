@@ -9,11 +9,6 @@ namespace Controller
             return Gastos.ListarGastos();
         }
 
-        public static List<string> ListarCategorias()
-        {
-            return Gastos.ListarCategorias();
-        }
-
         public static List<Gastos> Sincronizar()
         {
             return Gastos.Sincronizar();
@@ -29,9 +24,9 @@ namespace Controller
             );
         }
 
-        public static void AlterarGasto(string nome, string valor, string data, string categoria, int indice)
+        public static void AlterarGasto(string nome, string valor, string data, int id, int indice)
         {
-            Gastos.AlterarGasto(nome, valor, data, categoria, indice);
+            Gastos.AlterarGasto(nome, valor, data, id, indice);
         }
 
         public static void DeletarGasto(int indice)
