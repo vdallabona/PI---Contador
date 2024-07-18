@@ -34,7 +34,7 @@ namespace Model{
             Senha = senha;
             IdFamilia = idFamilia;
 
-            RepoCadastro.CriarU(this);
+            RepoCadastro.LoginExisteCad(this);
         }
 
         public static List<Usuarios> Sincronizar() {

@@ -1,6 +1,3 @@
-using System;
-using System.Drawing;
-using System.Windows.Forms;
 using Controller;
 using Model;
 
@@ -8,29 +5,19 @@ namespace View
 {
     public class ViewCadastro : Form
     {
-        
         private readonly Form ParentForm;
         private readonly Label lblTituloCadastro;
-        
         private readonly Label lblNomeFam;        
-
         private readonly Label lblNomeUser;
-
         private readonly Label lblLoginAdm;
         private readonly Label lblSenhaAdm;
         private readonly TextBox inpNomeFam;
-
         private readonly TextBox inpNomeUser;
         private readonly TextBox inpLoginAdm;
-
         private readonly TextBox inpSenhaAdm;
-        
         private readonly Button btnCadastrar;
         private readonly Button btnLogar;
-
-
         private readonly Panel PnlLogin;
-
         public ViewCadastro(Form parent)
         {
             ParentForm = parent;

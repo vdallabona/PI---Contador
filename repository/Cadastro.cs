@@ -6,7 +6,7 @@ namespace Repo {
     public class RepoCadastro {
 
         List<Login> usuarioAtual = RepoLogin.usuarioAtual;
-        private static MySqlConnection conexao;
+        private static MySqlConnection? conexao;
 
         private static List<Familias> familias = new List<Familias>();
 
@@ -63,13 +63,6 @@ namespace Repo {
                     command.Parameters.AddWithValue("@Nome", familia.Nome);
                     int rowsAffected = command.ExecuteNonQuery();
                     familia.IdFamilia = Convert.ToInt32(command.LastInsertedId);
-
-                    if (rowsAffected > 0) {
-                        MessageBox.Show("Familia cadastrada com sucesso");
-                        familias.Add(familia);
-                    } else {
-                        MessageBox.Show("Deu ruim, não deu pra adicionar");
-                    }
                 }
             } catch (Exception e) {
                 MessageBox.Show("Deu ruim: " + e.Message);
@@ -99,34 +92,49 @@ namespace Repo {
             return usuarios;
         }
 
+        public static void LoginExisteCad(Usuarios usuario){
+            InitConexao();
+            string checkQuery = "SELECT COUNT(*) FROM usuarios WHERE Login = @Login;";
+            MySqlCommand checkCommand = new MySqlCommand(checkQuery, conexao);
+            checkCommand.Parameters.AddWithValue("@Login", usuario.Login);
+            int count = Convert.ToInt32(checkCommand.ExecuteScalar());
+            if (count > 0)
+            {
+                MessageBox.Show("Login já existe, por favor escolha outro login.");
+                return;
+            }else{
+                CriarU(usuario);
+            }
+            CloseConexao();
+        }
+
         public static void CriarU(Usuarios usuario) {
             InitConexao();
             string insert = "INSERT INTO usuarios (idFamilia, Nome, Login, Senha, Adm) VALUES (@idFamilia, @Nome, @Login, @Senha, '1')";
             MySqlCommand command = new MySqlCommand(insert, conexao);
             try {
                 if (usuario.Nome == null || usuario.Login == null || usuario.Senha == null) {
-                    MessageBox.Show("Deu ruim, favor preencher todas as tabelas");
+                    MessageBox.Show("Favor preencher todos os campos");
                 } else {   
                     command.Parameters.AddWithValue("@idFamilia", usuario.IdFamilia);
                     command.Parameters.AddWithValue("@Nome", usuario.Nome);
                     command.Parameters.AddWithValue("@Login", usuario.Login);
                     command.Parameters.AddWithValue("@Senha", usuario.Senha);
                     int rowsAffected = command.ExecuteNonQuery();
-                    
+
                     usuario.IdUsuario = Convert.ToInt32(command.LastInsertedId);
 
                     if (rowsAffected > 0) {
-                        MessageBox.Show("Usuario cadastrado com sucesso");
+                        MessageBox.Show("Cadastrado realizado com sucesso");
                         usuarios.Add(usuario);
                     } else {
-                        MessageBox.Show("Deu ruim, não deu pra adicionar");
+                        MessageBox.Show("Erro ao realizar cadastro");
                     }
                 }
             } catch (Exception e) {
                 MessageBox.Show("Deu ruim: " + e.Message);
             }
-
             CloseConexao();
         }
     }
-}
+} 
