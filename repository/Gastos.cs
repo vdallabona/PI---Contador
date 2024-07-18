@@ -104,9 +104,9 @@ namespace Repo
             FROM `gastos` 
             INNER JOIN categorias ON gastos.idCategoria = categorias.idCategorias
             INNER JOIN usuarios ON gastos.idUsuario = usuarios.idUsuario
-            WHERE gastos.idFamilia = @idFamilia";
+            WHERE gastos.idUsuario = @IdUsuario";
             MySqlCommand command = new MySqlCommand(query, conexao);
-            command.Parameters.AddWithValue("@idFamilia", usuarioAtual[0].IdFamilia);
+            command.Parameters.AddWithValue("@IdUsuario", usuarioAtual[0].IdUsuario);
             MySqlDataReader reader = command.ExecuteReader();
 
             while (reader.Read())

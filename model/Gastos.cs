@@ -40,8 +40,14 @@ namespace Model
 
         public static List<Gastos> Sincronizar()
         {
-            
-            return RepoGastos.SincronizarPadrao();
+            if (RepoLogin.usuarioAtual[0].Adm == true)
+            {
+                return RepoGastos.SincronizarAdm();
+            }
+            else
+            {
+                return RepoGastos.SincronizarPadrao();
+            }
            
 
         }
