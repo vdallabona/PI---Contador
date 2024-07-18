@@ -16,7 +16,6 @@ namespace View
         private readonly TextBox inpLoginAdm;
         private readonly TextBox inpSenhaAdm;
         private readonly Button btnCadastrar;
-        private readonly Button btnLogar;
         private readonly Panel PnlLogin;
         public ViewCadastro(Form parent)
         {
@@ -111,24 +110,13 @@ namespace View
             btnCadastrar = new Button
             {
                 Text = "CADASTRAR",
-                Location = new Point(50, 310),
+                Location = new Point(150, 310),
                 Size = new Size(120, 40),
                 BackColor = Color.LightGreen,
                 FlatStyle = FlatStyle.Flat,
                 Font = new Font("Arial", 10)
             };
             btnCadastrar.Click += ClickCadastrar;
-
-            btnLogar = new Button
-            {
-                Text = "LOGAR",
-                Location = new Point(230, 310),
-                Size = new Size(120, 40),
-                BackColor = Color.LightBlue,
-                FlatStyle = FlatStyle.Flat,
-                Font = new Font("Arial", 10)
-            };
-            btnLogar.Click += ClickLogar;
 
 
             PnlLogin = new Panel
@@ -150,7 +138,6 @@ namespace View
             PnlLogin.Controls.Add(inpLoginAdm);
             PnlLogin.Controls.Add(inpSenhaAdm);
             PnlLogin.Controls.Add(btnCadastrar);
-            PnlLogin.Controls.Add(btnLogar);
 
         }
 
@@ -166,10 +153,6 @@ namespace View
                 ControllerCadastro.CriarFamilia(nomeFamilia);
                 inpNomeFam.Clear();
 
-            }
-            else
-            {
-                MessageBox.Show("O nome da família não pode estar vazio.");
             }
 
             string nome = inpNomeUser.Text;
@@ -187,13 +170,6 @@ namespace View
                 MessageBox.Show("Todos os campos devem estar preenchidos.");
             }
         
-        }
-
-        private void ClickLogar(object? sender, EventArgs e)
-        {
-            Hide();
-            new ViewLogin().Show();
-
         }
 
     }
