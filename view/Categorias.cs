@@ -36,6 +36,7 @@ namespace View
                 Location = new Point(20, 20),
                 Size = new Size(100, 40),
                 BackColor = Color.LightGray,
+                FlatStyle = FlatStyle.Flat,
                 Font = new Font("Arial", 10)
             };
             btnHome.Click += BtnHome_Click;
@@ -62,6 +63,7 @@ namespace View
                 Location = new Point(270, 70),
                 Size = new Size(120, 40),
                 BackColor = Color.LightGray,
+                FlatStyle = FlatStyle.Flat,
                 Font = new Font("Arial", 10)
             };
             btnCadastrar.Click += ClickCadastrar;
@@ -72,6 +74,7 @@ namespace View
                 Location = new Point(410, 70),
                 Size = new Size(120, 40),
                 BackColor = Color.LightGray,
+                FlatStyle = FlatStyle.Flat,
                 Font = new Font("Arial", 10)
             };
             btnAlterar.Click += ClickAlterar;
@@ -111,7 +114,11 @@ namespace View
             PnlCategorias.Controls.Add(DgvCategorias);
 
             ControllerCategorias.Sincronizar();
-            Listar();
+            List<Categorias> categorias = ControllerCategorias.ListarCategorias();
+            if (categorias.Count > 0)
+            {
+                Listar();
+            }
         }
 
         private void Listar()

@@ -262,20 +262,25 @@ namespace View
             this.pnlCadastro.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvGastos)).EndInit();
             this.ResumeLayout(false);
-            Listar();
+            List<Gastos> gastos = ControllerGastos.ListarGastos();
+            if (gastos.Count > 0)
+            {
+                Listar();
+                ListarCategorias();
+            }
+            else
+            {
+                ListarCategorias();
+            }
         }
 
         private void Listar()
         {
             List<Gastos> gastos = ControllerGastos.ListarGastos();
-            List<Categorias> categorias = ControllerCategorias.ListarCategorias();
 
             dgvGastos.Columns.Clear();
             dgvGastos.AutoGenerateColumns = false;
             dgvGastos.DataSource = gastos;
-            cbCategoria.DataSource = categorias;
-            cbCategoria.DisplayMember = "Nome";
-            cbCategoria.ValueMember = "IdCategorias";
             
             dgvGastos.Columns.Add(new DataGridViewTextBoxColumn
             {
@@ -312,6 +317,14 @@ namespace View
                 column.Width = this.ClientSize.Width / 5;
                 column.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
             }
+        }
+
+        private void ListarCategorias()
+        {          
+            List<Categorias> categorias = ControllerCategorias.ListarCategorias();
+            cbCategoria.DataSource = categorias;
+            cbCategoria.DisplayMember = "Nome";
+            cbCategoria.ValueMember = "IdCategorias";
         }
         private void ClickCadastrar(object? sender, EventArgs e)
         {
