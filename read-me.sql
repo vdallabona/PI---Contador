@@ -75,9 +75,9 @@ VALUES
 ("2", "Anita", "AnitaSouza", "Cacto4ever", "0"),
 ("3", "Jenna", "JennaSantonniIII", "realeza", "0");
 
-INSERT INTO gastos (idUsuario, idCategoria, nome, valor, data)
+INSERT INTO gastos (idUsuario, idCategoria, nome, valor, data, idFamilia)
 VALUES
-("3", "4", "Licença do Minecraft", "34.40", "2024-02-02"),
-("4", "3", "Conta água 01/2024", "450.20", "2024-01-29"),
-("6", "1", "Filé minginhon 5 estrelas", "99.99", "2024-04-12"),
-("5", "4", "Show da Annita", "300.00", "2024-06-22");
+("3", "4", "Licença do Minecraft", "34.40", "2024-02-02", "1"),
+("4", "3", "Conta água 01/2024", "450.20", "2024-01-29", "2"),
+("6", "1", "Filé minginhon 5 estrelas", "99.99", "2024-04-12", "3"),
+("5", "4", "Show da Annita", "300.00", "2024-06-22", "2");
