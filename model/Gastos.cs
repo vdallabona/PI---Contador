@@ -18,19 +18,25 @@ namespace Model
         {
             
         }
-        public Gastos(string nome, string valor, string data, string categoria, int id)
+        public Gastos(string nome, string valor, string data, string categoria, int id, string membro)
         {
             Nome = nome;
             Valor = valor;
             Data = Convert.ToDateTime(data);
             Categoria = categoria;
             IdCategoria = id;
+            Membro = membro;
             RepoGastos.CriarGasto(this);
         }
 
         public static List<Gastos> ListarGastos()
         {
             return RepoGastos.ListarGastos();
+        }
+
+        public static List<int> ContarMembros()
+        {
+            return RepoGastos.ContarMembros();
         }
 
         public static List<Gastos> Sincronizar()
