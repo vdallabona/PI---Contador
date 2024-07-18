@@ -6,8 +6,8 @@ Este projeto é um sistema simples para controle de finanças pessoais desenvolv
 
 - Cadastro de gastos associados a categorias pré-definidas.
 - Visualização e edição de gastos cadastrados.
-- Relatórios de gastos por categoria e período.
-- Interface amigável e intuitiva.
+- Cadastro de Categorias.
+- Interface intuitiva.
 
 ## Tecnologias Utilizadas
 
