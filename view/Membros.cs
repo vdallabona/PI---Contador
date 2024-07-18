@@ -184,7 +184,11 @@ namespace View
             Controls.Add(btnHomepage);
             PnlGrid.Controls.Add(DataGridListar);
             ControllerMembros.Sincronizar();
-            Listar();
+            List<Membros> membros = ControllerMembros.ListarMembros();
+            if (membros.Count > 0)
+            {
+                Listar();
+            }
         }
 
         private void Listar() {

@@ -26,6 +26,7 @@ namespace View
             {
                 Text = "Gerenciador de gastos",
                 Location = new Point(10, 0),
+                FlatStyle = FlatStyle.Flat,
                 Font = new Font("Arial", 28),
                 AutoSize = true
             };
@@ -36,6 +37,7 @@ namespace View
                 Location = new Point(150, 100),
                 Size = new Size(120, 40),
                 BackColor = Color.LightGray,
+                FlatStyle = FlatStyle.Flat,
                 Font = new Font("Arial", 10)
             };
             btnGastos.Click += ClickGastos;
@@ -47,6 +49,7 @@ namespace View
                 Location = new Point(150, 150),
                 Size = new Size(120, 40),
                 BackColor = Color.LightGray,
+                FlatStyle = FlatStyle.Flat,
                 Font = new Font("Arial", 10)
             };
             btnEstatistica.Click += ClickEstatistica;
@@ -57,6 +60,7 @@ namespace View
                 Location = new Point(150, 200),
                 Size = new Size(120, 40),
                 BackColor = Color.LightGray,
+                FlatStyle = FlatStyle.Flat,
                 Font = new Font("Arial", 10)
             };
             btnSair.Click += ClickSair;
