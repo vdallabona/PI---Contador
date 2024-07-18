@@ -154,10 +154,6 @@ namespace View
                 inpNomeFam.Clear();
 
             }
-            else
-            {
-                MessageBox.Show("O nome da família não pode estar vazio.");
-            }
 
             string nome = inpNomeUser.Text;
             string login = inpLoginAdm.Text;
