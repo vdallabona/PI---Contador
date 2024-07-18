@@ -1,3 +1,4 @@
+using System.Runtime.InteropServices.Marshalling;
 using Model;
 using MySqlConnector;
 
@@ -7,7 +8,7 @@ namespace Repo
     {
         private static MySqlConnection? conexao;
         public static List<Membros> membros = [];
-
+        List<Login>usuarioAtual = RepoLogin.usuarioAtual;
         public static List<Membros> ListarMembros()
         {
             return membros;
@@ -30,14 +31,16 @@ namespace Repo
         public static void CloseConexao()
         {
             conexao.Close();
-        }
+        }       
 
         public static List<Membros> SincronizarMembros()
         {
+            membros.Clear();
             InitConexao();
 
-            string query = "SELECT * FROM usuarios;";
+            string query = "SELECT * FROM usuarios WHERE idFamilia = @idFamilia;";
             MySqlCommand command = new MySqlCommand(query, conexao);
+            command.Parameters.AddWithValue("@idFamilia", RepoLogin.usuarioAtual[0].IdFamilia);
             MySqlDataReader reader = command.ExecuteReader();
 
             while (reader.Read())
@@ -49,7 +52,6 @@ namespace Repo
                 membro.Senha = reader["Senha"].ToString();
                 membros.Add(membro);
             }
-
             CloseConexao();
             return membros;
         }
@@ -74,7 +76,6 @@ namespace Repo
                     command.Parameters.AddWithValue("@Nome", nome);
                     command.Parameters.AddWithValue("@Login", login);
                     command.Parameters.AddWithValue("@Senha", senha);
-
                     int rowsAffected = command.ExecuteNonQuery();
 
                     if (rowsAffected > 0)
@@ -98,20 +99,57 @@ namespace Repo
             CloseConexao();
         }
 
+        public static void LoginExiste(Membros membro){
+            InitConexao();
+            string checkQuery = "SELECT COUNT(*) FROM usuarios WHERE Login = @Login;";
+            MySqlCommand checkCommand = new MySqlCommand(checkQuery, conexao);
+            checkCommand.Parameters.AddWithValue("@Login", membro.Login);
+            int count = Convert.ToInt32(checkCommand.ExecuteScalar());
+            if (count > 0)
+            {
+                MessageBox.Show("Login já existe, por favor escolha outro login.");
+                return;
+            }else{
+                CriarMembro(membro);
+            }
+            CloseConexao();
+        }
+        public static void LoginExisteAlt(string nome, string login, string senha, int indice){
+            InitConexao();
+            string checkQuery = "SELECT COUNT(*) FROM usuarios WHERE Login = @Login;";
+            MySqlCommand checkCommand = new MySqlCommand(checkQuery, conexao);
+            checkCommand.Parameters.AddWithValue("@Login", login);
+            int count = Convert.ToInt32(checkCommand.ExecuteScalar());
+            if (count > 0)
+            {
+                MessageBox.Show("Login já existe, por favor escolha outro login.");
+                return;
+            }else{
+                AlterarMembros(nome, login, senha, indice);
+            }
+            CloseConexao();
+        }
+
         public static void CriarMembro(Membros membro)
         {
             InitConexao();
-
-            string query = "INSERT INTO usuarios (idFamilia, Nome, Login, Senha, adm) VALUES ('1', @Nome, @Login, @Senha, '1');";
-            MySqlCommand command = new MySqlCommand(query, conexao);
-            command.Parameters.AddWithValue("@Nome", membro.Nome);
-            command.Parameters.AddWithValue("@Login", membro.Login);
-            command.Parameters.AddWithValue("@Senha", membro.Senha);
-            membro.idFamilia = '1';
-            command.ExecuteNonQuery();
-            membros.Add(membro);
-            MessageBox.Show("Tarefa adicionada com sucesso!");
-
+            if (membro.Nome == "" || membro.Login == "" || membro.Senha == "")
+            {
+                MessageBox.Show("Preencha todos os campos");
+            }
+            else
+            { 
+                string query = "INSERT INTO usuarios (idFamilia, Nome, Login, Senha, adm) VALUES (@idFamilia, @Nome, @Login, @Senha, '0');";
+                MySqlCommand command = new MySqlCommand(query, conexao);
+                command.Parameters.AddWithValue("@Nome", membro.Nome);
+                command.Parameters.AddWithValue("@Login", membro.Login);
+                command.Parameters.AddWithValue("@Senha", membro.Senha);
+                membro.idFamilia = RepoLogin.usuarioAtual[0].IdFamilia;
+                command.Parameters.AddWithValue("@idFamilia", membro.idFamilia);
+                command.ExecuteNonQuery();
+                membros.Add(membro);
+                MessageBox.Show("Usuario adicionado com sucesso!");
+            }
             CloseConexao();
         }
 
@@ -119,7 +157,7 @@ namespace Repo
         {
             InitConexao();
 
-            string delete = "DELETE FROM usuarios WHERE idUsuario = @IdUsuario";
+            string delete = "UPDATE usuarios SET Login = 'USUARIO DELETADO', Senha = '' WHERE idUsuario = @idUsuario";
             MySqlCommand command = new MySqlCommand(delete, conexao);
             command.Parameters.AddWithValue("@IdUsuario", membros[indice].IdUsuario);
 
@@ -136,6 +174,5 @@ namespace Repo
 
             CloseConexao();
         }
-
     }
 }

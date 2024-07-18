@@ -6,12 +6,13 @@ namespace View
 {
     public class ViewHome : Form
     {
-        private readonly Form ParentForm;
+    
         private readonly Label lblTituloHome;
         private readonly Button btnGastos;
         private readonly Button btnSair;
         private readonly Button btnEstatistica;
         private readonly Panel PnlLogin;
+        private readonly Form ParentForm;
 
         public ViewHome(Form parent)
         {
@@ -25,6 +26,7 @@ namespace View
             {
                 Text = "Gerenciador de gastos",
                 Location = new Point(10, 0),
+                FlatStyle = FlatStyle.Flat,
                 Font = new Font("Arial", 28),
                 AutoSize = true
             };
@@ -35,17 +37,19 @@ namespace View
                 Location = new Point(150, 100),
                 Size = new Size(120, 40),
                 BackColor = Color.LightGray,
+                FlatStyle = FlatStyle.Flat,
                 Font = new Font("Arial", 10)
             };
             btnGastos.Click += ClickGastos;
 
-
+           
             btnEstatistica = new Button
             {
                 Text = "Estatistica",
                 Location = new Point(150, 150),
                 Size = new Size(120, 40),
                 BackColor = Color.LightGray,
+                FlatStyle = FlatStyle.Flat,
                 Font = new Font("Arial", 10)
             };
             btnEstatistica.Click += ClickEstatistica;
@@ -56,6 +60,7 @@ namespace View
                 Location = new Point(150, 200),
                 Size = new Size(120, 40),
                 BackColor = Color.LightGray,
+                FlatStyle = FlatStyle.Flat,
                 Font = new Font("Arial", 10)
             };
             btnSair.Click += ClickSair;
@@ -78,17 +83,37 @@ namespace View
 
         private void ClickGastos(object? sender, EventArgs e)
         {
+            var viewGastos = new ViewGastos();
+            // Verifica se já existe uma instância de ViewGastos
+            if (viewGastos == null || viewGastos.IsDisposed)
+            {
+                viewGastos = new ViewGastos();
+            }
 
+            
+
+            // Oculta o formulário atual
+            this.Hide();
+
+            // Exibe o formulário de Gastos
+            viewGastos.Show();
         }
         private void ClickEstatistica(object? sender, EventArgs e)
+     
         {
-
+            MessageBox.Show("Área ainda não disponivel");
+        
         }
 
         private void ClickSair(object? sender, EventArgs e)
         {
-
+            // Fecha todos os formulários abertos
+            foreach (Form form in Application.OpenForms)
+            {
+                form.Close();
+            }
         }
 
     }
+
 }

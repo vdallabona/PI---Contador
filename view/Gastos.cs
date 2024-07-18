@@ -1,3 +1,4 @@
+using System.Data;
 using Controller;
 using Model;
 
@@ -22,13 +23,13 @@ namespace View
         private readonly Button btnCadastrar;
         private readonly Button btnHome;
         private readonly DataGridView dgvGastos;
-        private readonly Form parentForm;
 
         public ViewGastos()
         {
-            List<Gastos> gastos = ControllerGastos.ListarGastos();
+            ControllerGastos.ContarMembros();
             ControllerGastos.Sincronizar();
-            // parentForm = parent;
+            ControllerCategorias.Sincronizar();
+            ControllerMembros.Sincronizar();
             this.pnlHeader = new System.Windows.Forms.Panel();
             this.pnlDgv = new System.Windows.Forms.Panel();
             this.lblCadastro = new System.Windows.Forms.Label();
@@ -261,18 +262,31 @@ namespace View
             this.pnlCadastro.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvGastos)).EndInit();
             this.ResumeLayout(false);
-            Listar();
+            List<Gastos> gastos = ControllerGastos.ListarGastos();
+            if (gastos.Count > 0)
+            {
+                Listar();
+                ListarCategorias();
+            }
+            else
+            {
+                ListarCategorias();
+            }
         }
 
         private void Listar()
         {
             List<Gastos> gastos = ControllerGastos.ListarGastos();
-            List<string> categorias = ControllerGastos.ListarCategorias();
 
             dgvGastos.Columns.Clear();
             dgvGastos.AutoGenerateColumns = false;
             dgvGastos.DataSource = gastos;
-            cbCategoria.DataSource = categorias;
+            
+            dgvGastos.Columns.Add(new DataGridViewTextBoxColumn
+            {
+                HeaderText = "Nome do Membro",
+                DataPropertyName = "Membro"
+            });
 
             dgvGastos.Columns.Add(new DataGridViewTextBoxColumn
             {
@@ -300,11 +314,18 @@ namespace View
 
             foreach (DataGridViewColumn column in dgvGastos.Columns)
             {
-                column.Width = this.ClientSize.Width / 4;
+                column.Width = this.ClientSize.Width / 5;
                 column.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
             }
         }
-    
+
+        private void ListarCategorias()
+        {          
+            List<Categorias> categorias = ControllerCategorias.ListarCategorias();
+            cbCategoria.DataSource = categorias;
+            cbCategoria.DisplayMember = "Nome";
+            cbCategoria.ValueMember = "IdCategorias";
+        }
         private void ClickCadastrar(object? sender, EventArgs e)
         {
             if (inpGasto.Text == "" || inpValor.Text == "" || inpData.Text == "" || cbCategoria.Text == "")
@@ -314,7 +335,9 @@ namespace View
             else
             {
                 string categoria = cbCategoria.SelectedItem.ToString();
-                ControllerGastos.CriarGasto(inpGasto.Text, inpValor.Text, inpData.Text, categoria);
+                string membro = "";
+                int id = Convert.ToInt32(cbCategoria.SelectedValue);
+                ControllerGastos.CriarGasto(inpGasto.Text, inpValor.Text, inpData.Text, categoria, id, membro);
                 inpGasto.Text = "";
                 inpValor.Text = "";
                 inpData.Text = "";
@@ -334,8 +357,8 @@ namespace View
             }
             else
             {
-                string categoria = cbCategoria.SelectedItem.ToString();
-                ControllerGastos.AlterarGasto(inpGasto.Text, inpValor.Text, inpData.Text, categoria, indice);
+                int id = Convert.ToInt32(cbCategoria.SelectedValue);
+                ControllerGastos.AlterarGasto(inpGasto.Text, inpValor.Text, inpData.Text, id, indice);
                 inpGasto.Text = "";
                 inpValor.Text = "";
                 inpData.Text = "";
@@ -356,9 +379,18 @@ namespace View
         
         private void ClickHome(object? sender, EventArgs e)
         {
-            Close();
+            List<Login> usuario = ControllerLogin.Listar();
 
-            parentForm.Show();
+            if (usuario.Count > 0 && usuario[0].Adm == true)
+            {
+                Hide();
+                new ViewHomeAdm(this).Show();
+            }
+            else if (usuario.Count > 0 && usuario[0].Adm == false)
+            {
+                Hide();
+                new ViewHome(this).Show();       
+            }
         }
     }
 }

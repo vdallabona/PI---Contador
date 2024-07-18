@@ -1,7 +1,3 @@
-using System;
-using System.Drawing;
-using System.Windows.Forms;
-
 namespace View
 {
     public class ViewHomeAdm : Form
@@ -14,9 +10,9 @@ namespace View
         private readonly Button btnEstatisticas;
         private readonly Button btnSair;
 
-        public ViewHomeAdm(/*Form parent*/)
+        public ViewHomeAdm(Form parent)
         {
-            // ParentForm = parent;
+            ParentForm = parent;
             StartPosition = FormStartPosition.CenterScreen;
             MinimumSize = new Size(800, 600);
             BackColor = Color.White;
@@ -96,36 +92,60 @@ namespace View
 
         private void ClickMembros(object? sender, EventArgs e)
         {
-            // Hide();
-            // new ViewMembros(this).Show(); 
+            var viewMembros = new ViewMembros();
+             
+            if (viewMembros == null || viewMembros.IsDisposed)
+            {
+                viewMembros = new ViewMembros();
+            }
+
+             this.Hide();
+
+             viewMembros.Show();
         }
 
         private void ClickCategorias(object? sender, EventArgs e)
         {
-            // Hide();
-            // new ViewCategorias(this).Show(); 
+            var viewCategorias = new ViewCategorias();
+             if (viewCategorias == null || viewCategorias.IsDisposed)
+            {
+                viewCategorias = new ViewCategorias();
+            }
+
+             this.Hide();
+
+             viewCategorias.Show();
         }
 
         private void ClickGastos(object? sender, EventArgs e)
         {
-            // Hide();
-            // new ViewGastos(this).Show(); 
+            var viewGastos = new ViewGastos();
+             if (viewGastos == null || viewGastos.IsDisposed)
+            {
+                viewGastos = new ViewGastos();
+            }
+
+             this.Hide();
+
+             viewGastos.Show();
         }
 
         private void ClickEstatisticas(object? sender, EventArgs e)
         {
-            // Hide();
-            // new ViewEstatisticas(this).Show(); 
+            MessageBox.Show("Área ainda não disponivel");
         }
 
-        private void ClickSair(object? sender, EventArgs e)
+       private void ClickSair(object? sender, EventArgs e)
         {
-            DialogResult dialogResult = MessageBox.Show("Tem certeza que deseja sair?", "Sair");
+            DialogResult dialogResult = MessageBox.Show("Tem certeza que deseja sair?", "Sair", MessageBoxButtons.YesNo);
             if (dialogResult == DialogResult.Yes)
             {
-                Application.Exit();
+                foreach (Form form in Application.OpenForms)
+                {
+                    form.Close();
+                }
             }
-
         }
+
     }
 }
