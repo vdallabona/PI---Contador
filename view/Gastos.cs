@@ -345,6 +345,7 @@ namespace View
             }
 
             Listar();
+            ListarCategorias();
         }
         
         private void ClickAlterar(object? sender, EventArgs e)
@@ -366,6 +367,7 @@ namespace View
             }
 
             Listar();
+            ListarCategorias();
         }
         
         private void ClickDeletar(object? sender, EventArgs e)
@@ -375,6 +377,7 @@ namespace View
             ControllerGastos.DeletarGasto(indice);
 
             Listar();
+            ListarCategorias();
         }
         
         private void ClickHome(object? sender, EventArgs e)
