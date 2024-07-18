@@ -1,81 +1,47 @@
-CREATE TABLE `categorias`(
-    `idCategorias` INT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
-    `nomeCategoria` VARCHAR(255) NOT NULL
-);
-CREATE TABLE `usuarios`(
-    `idUsuario` INT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
-    `idFamilia` INT UNSIGNED NOT NULL,
-    `nome` VARCHAR(255) NOT NULL,
-    `login` VARCHAR(255) NOT NULL,
-    `senha` VARCHAR(255) NOT NULL,
-    `adm` BOOLEAN NOT NULL
-);
-CREATE TABLE `familia`(
-    `idFamilia` INT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
-    `nomeFamilia` VARCHAR(255) NOT NULL
-);
-CREATE TABLE `familiaCategorias`(
-    `idFamiliaCategorias` INT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
-    `idFamilia` INT UNSIGNED NOT NULL,
-    `idCategorias` INT UNSIGNED NOT NULL
-);
-CREATE TABLE `gastos`(
-    `idGastos` INT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
-    `idUsuario` INT UNSIGNED NOT NULL,
-    `idCategoria` INT UNSIGNED NOT NULL,
-    `nome` VARCHAR(255) NOT NULL,
-    `valor` DECIMAL(8, 2) NOT NULL,
-    `data` DATE NOT NULL
-);
-ALTER TABLE
-    `gastos` ADD CONSTRAINT `gastos_idusuario_foreign` FOREIGN KEY(`idUsuario`) REFERENCES `usuarios`(`idUsuario`);
-ALTER TABLE
-    `usuarios` ADD CONSTRAINT `usuarios_idfamilia_foreign` FOREIGN KEY(`idFamilia`) REFERENCES `familia`(`idFamilia`);
-ALTER TABLE
-    `familiaCategorias` ADD CONSTRAINT `familiacategorias_idfamilia_foreign` FOREIGN KEY(`idFamilia`) REFERENCES `familia`(`idFamilia`);
-ALTER TABLE
-    `familiaCategorias` ADD CONSTRAINT `familiacategorias_idcategorias_foreign` FOREIGN KEY(`idCategorias`) REFERENCES `categorias`(`idCategorias`);
-ALTER TABLE
-    `gastos` ADD CONSTRAINT `gastos_idcategoria_foreign` FOREIGN KEY(`idCategoria`) REFERENCES `categorias`(`idCategorias`);
+# Controle de Finanças Pessoais
 
----------------------------- INSERT ---------------------------- INSERT ---------------------------- INSERT ---------------------------- INSERT ---------------------------- INSERT 
+Este projeto é um sistema simples para controle de finanças pessoais desenvolvido em C# com interface gráfica utilizando Windows Forms e banco de dados MySQL.
 
-INSERT INTO categorias (nomeCategoria)
-VALUES
-("Alimentos"),
-("Conta Luz"),
-("Conta Água"),
-("Lazer");
+## Funcionalidades
 
-INSERT INTO familia (nomeFamilia)
-VALUES
-("Santos"),
-("Souza"),
-("Santonni"),
-("Maronni");
+- Cadastro de gastos associados a categorias pré-definidas.
+- Visualização e edição de gastos cadastrados.
+- Relatórios de gastos por categoria e período.
+- Interface amigável e intuitiva.
 
-INSERT INTO familiaCategorias (idFamilia, idCategorias)
-VALUES
-("1", "1"),
-("2", "1"),
-("3", "1"),
-("4", "1"),
-("1", "2"),
-("1", "3");
+## Tecnologias Utilizadas
 
+- C# (.NET Framework)
+- Windows Forms
+- MySQL
 
-INSERT INTO usuarios (idFamilia, nome, login, senha, adm)
-VALUES
-("1", "João", "João6969", "admin123", "0"),
-("1", "Maria", "MariDragonSlayer", "JoãoTemPauPequeno", "1"),
-("1", "Joaquim", "quimMinecraft", "redstone4life", "1"),
-("2", "Roberto", "Roberto1998", "senha", "1"),
-("2", "Anita", "AnitaSouza", "Cacto4ever", "0"),
-("3", "Jenna", "JennaSantonniIII", "realeza", "0");
+## Estrutura do Projeto
 
-INSERT INTO gastos (idUsuario, idCategoria, nome, valor, data)
-VALUES
-("3", "4", "Licença do Minecraft", "34.40", "2024-02-02"),
-("4", "3", "Conta água 01/2024", "450.20", "2024-01-29"),
-("6", "1", "Filé minginhon 5 estrelas", "99.99", "2024-04-12"),
-("5", "4", "Show da Annita", "300.00", "2024-06-22");
+├── Models/ # Classes de modelo (Gastos, Categorias)
+├── Repositories/ # Repositórios de dados (RepoGastos, RepoCategoria)
+├── Views/ # Interfaces gráficas (Forms e User Controls)
+└── README.md # 
+
+## Configuração do Ambiente
+
+### Pré-requisitos
+
+- Visual Studio 
+- MySQL
+
+### Configuração do Banco de Dados
+
+1. Importe o arquivo SQL fornecido (`script.sql`) para criar as tabelas necessárias no seu banco de dados MySQL.
+
+### Configuração do Projeto
+
+1. Clone este repositório para o seu ambiente local.
+2. Abra o projeto no Visual Studio.
+3. Certifique-se de que todas as dependências foram restauradas através do NuGet Package Manager.
+4. Configure a string de conexão com o seu banco de dados MySQL em `RepoGastos.cs` e `RepoCategoria.cs`.
+
+## Como Utilizar
+
+1. Execute o projeto no Visual Studio.
+2. Faça Cadastro/login com suas credenciais.
+3. Explore as funcionalidades disponíveis na interface.
