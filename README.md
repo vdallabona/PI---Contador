@@ -15,13 +15,6 @@ Este projeto é um sistema simples para controle de finanças pessoais desenvolv
 - Windows Forms
 - MySQL
 
-## Estrutura do Projeto
-
-├── Models/ # Classes de modelo (Gastos, Categorias)
-├── Repositories/ # Repositórios de dados (RepoGastos, RepoCategoria)
-├── Views/ # Interfaces gráficas (Forms e User Controls)
-└── README.md # 
-
 ## Configuração do Ambiente
 
 ### Pré-requisitos
