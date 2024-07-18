@@ -1,4 +1,3 @@
-using Microsoft.VisualBasic;
 using Repo;
 
 namespace Model
@@ -41,14 +40,9 @@ namespace Model
 
         public static List<Gastos> Sincronizar()
         {
-            if (RepoLogin.usuarioAtual[0].Adm == true)
-            {
-                return RepoGastos.SincronizarAdm();    
-            }
-            else
-            {
-                return RepoGastos.SincronizarPadrão();
-            }
+            
+            return RepoGastos.SincronizarPadrao();
+           
 
         }
 

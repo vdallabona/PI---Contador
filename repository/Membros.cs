@@ -139,7 +139,7 @@ namespace Repo
             }
             else
             { 
-                string query = "INSERT INTO usuarios (idFamilia, Nome, Login, Senha, adm) VALUES (@idFamilia, @Nome, @Login, @Senha, '1');";
+                string query = "INSERT INTO usuarios (idFamilia, Nome, Login, Senha, adm) VALUES (@idFamilia, @Nome, @Login, @Senha, '0');";
                 MySqlCommand command = new MySqlCommand(query, conexao);
                 command.Parameters.AddWithValue("@Nome", membro.Nome);
                 command.Parameters.AddWithValue("@Login", membro.Login);
@@ -148,7 +148,7 @@ namespace Repo
                 command.Parameters.AddWithValue("@idFamilia", membro.idFamilia);
                 command.ExecuteNonQuery();
                 membros.Add(membro);
-                MessageBox.Show("Tarefa adicionada com sucesso!");
+                MessageBox.Show("Usuario adicionado com sucesso!");
             }
             CloseConexao();
         }

@@ -6,10 +6,10 @@ namespace Repo
     public class RepoGastos
     {
         private static MySqlConnection conexao;
-        public static List<Gastos> gastos = [];
-        public static List<Categorias>categorias = RepoCategoria.ListCategorias();
+        public static List<Gastos> gastos = new List<Gastos>();
+        public static List<Categorias> categorias = RepoCategoria.ListCategorias();
         public static List<Login> usuarioAtual = RepoLogin.Listar();
-        public static List<int> idUsers = [];
+        public static List<int> idUsers = new List<int>();
         public static List<Membros> membros = RepoMembros.ListarMembros();
 
         public static List<Gastos> ListarGastos()
@@ -42,9 +42,14 @@ namespace Repo
             idUsers.Clear();
             InitConexao();
             int id = 0;
-            string query = "SELECT idUsuario FROM usuarios WHERE idFamilia = @Idfamilia";
+           string query = @"
+            SELECT gastos.idGastos,  gastos.idUsuario, usuarios.nome AS nomeUsuario ,gastos.idCategoria,gastos.nome, gastos.valor, gastos.data, categorias.nomeCategoria 
+            FROM `gastos` 
+            INNER JOIN categorias ON gastos.idCategoria = categorias.idCategorias
+            INNER JOIN usuarios ON gastos.idUsuario = usuarios.idUsuario
+            WHERE gastos.idFamilia = @idFamilia";
             MySqlCommand command = new MySqlCommand(query, conexao);
-            command.Parameters.AddWithValue("@IdFamilia", usuarioAtual[0].IdFamilia);
+            command.Parameters.AddWithValue("@idFamilia", usuarioAtual[0].IdFamilia);
             MySqlDataReader reader = command.ExecuteReader();
 
             while (reader.Read())
@@ -61,53 +66,60 @@ namespace Repo
         {
             gastos.Clear();
             InitConexao();
-
-            // string query = "SELECT id, nome, email FROM usuarios WHERE id IN (" + string.Join(", ", ids) + ")";
-            // MySqlCommand command = new MySqlCommand(query, conexao);
-            // command.Parameters.AddWithValue("@IdUsuario", idUsers[0]);
-            // MySqlDataReader reader = command.ExecuteReader();
-
-            // for (int i = 0; i < idUsers.Count; i++)
-            // {
-            //     command.Parameters.AddWithValue("@IdUsuario", idUsers[1]);
-            // MessageBox.Show("Chegou até aqui");
-            //     Gastos gasto = new Gastos();
-            //     gasto.IdGastos = Convert.ToInt32(reader["idGastos"].ToString());
-            //     gasto.IdUsuario = Convert.ToInt32(reader["idUsuario"].ToString());
-            //     gasto.IdCategoria = Convert.ToInt32(reader["idCategoria"].ToString());
-            //     gasto.Nome = reader["nome"].ToString();
-            //     gasto.Valor = "R$ " + Convert.ToString(reader["valor"].ToString());
-            //     gasto.Data = Convert.ToDateTime(reader["data"].ToString());
-            //     gasto.Categoria = reader["nomeCategoria"].ToString();
-            //     // gasto.Membro = membros[idUsers[i - 1]].Nome;
-            //     gastos.Add(gasto);
-            //     j ++;
-            // }
-
-            CloseConexao();
-            return gastos;
-        }
-
-        public static List<Gastos> SincronizarPadrão()
-        {
-            gastos.Clear();
-            InitConexao();
-            string query = "SELECT * FROM gastos, categorias WHERE idCategoria = idCategorias AND idUsuario = @IdUsuario";
+           string query = @"
+            SELECT gastos.idGastos,  gastos.idUsuario, usuarios.nome AS nomeUsuario ,gastos.idCategoria,gastos.nome, gastos.valor, gastos.data, categorias.nomeCategoria 
+            FROM `gastos` 
+            INNER JOIN categorias ON gastos.idCategoria = categorias.idCategorias
+            INNER JOIN usuarios ON gastos.idUsuario = usuarios.idUsuario
+            WHERE gastos.idFamilia = @idFamilia";
             MySqlCommand command = new MySqlCommand(query, conexao);
-            command.Parameters.AddWithValue("@IdUsuario", usuarioAtual[0].IdUsuario);
+            command.Parameters.AddWithValue("@idFamilia", usuarioAtual[0].IdFamilia);
             MySqlDataReader reader = command.ExecuteReader();
 
             while (reader.Read())
             {
                 Gastos gasto = new Gastos();
-                gasto.IdGastos = Convert.ToInt32(reader["idGastos"].ToString());
-                gasto.IdUsuario = Convert.ToInt32(reader["idUsuario"].ToString());
-                gasto.IdCategoria = Convert.ToInt32(reader["idCategoria"].ToString());
+                gasto.IdGastos = Convert.ToInt32(reader["idGastos"]);
+                gasto.IdUsuario = Convert.ToInt32(reader["idUsuario"]);
+                gasto.IdCategoria = Convert.ToInt32(reader["idCategoria"]);
                 gasto.Nome = reader["nome"].ToString();
-                gasto.Valor = "R$ " + Convert.ToString(reader["valor"].ToString());
-                gasto.Data = Convert.ToDateTime(reader["data"].ToString());
+                gasto.Valor = "R$ " + reader["valor"].ToString();
+                gasto.Data = Convert.ToDateTime(reader["data"]);
                 gasto.Categoria = reader["nomeCategoria"].ToString();
-                gasto.Membro = usuarioAtual[0].Nome;
+                gasto.Membro = reader["nomeUsuario"].ToString();
+
+                gastos.Add(gasto);
+            }
+
+            CloseConexao();
+            return gastos;
+        }
+
+        public static List<Gastos> SincronizarPadrao()
+        {
+            gastos.Clear();
+            InitConexao();
+            string query = @"
+            SELECT gastos.idGastos,  gastos.idUsuario, usuarios.nome AS nomeUsuario ,gastos.idCategoria,gastos.nome, gastos.valor, gastos.data, categorias.nomeCategoria 
+            FROM `gastos` 
+            INNER JOIN categorias ON gastos.idCategoria = categorias.idCategorias
+            INNER JOIN usuarios ON gastos.idUsuario = usuarios.idUsuario
+            WHERE gastos.idFamilia = @idFamilia";
+            MySqlCommand command = new MySqlCommand(query, conexao);
+            command.Parameters.AddWithValue("@idFamilia", usuarioAtual[0].IdFamilia);
+            MySqlDataReader reader = command.ExecuteReader();
+
+            while (reader.Read())
+            {
+                Gastos gasto = new Gastos();
+                gasto.IdGastos = Convert.ToInt32(reader["idGastos"]);
+                gasto.IdUsuario = Convert.ToInt32(reader["idUsuario"]);
+                gasto.IdCategoria = Convert.ToInt32(reader["idCategoria"]);
+                gasto.Nome = reader["nome"].ToString();
+                gasto.Valor = "R$ " + reader["valor"].ToString();
+                gasto.Data = Convert.ToDateTime(reader["data"]);
+                gasto.Categoria = reader["nomeCategoria"].ToString();
+                gasto.Membro = reader["nomeUsuario"].ToString();
 
                 gastos.Add(gasto);
             }
@@ -120,7 +132,7 @@ namespace Repo
         {
             InitConexao();
 
-            string insert = "INSERT INTO gastos(idUsuario, idCategoria, nome, valor, data) VALUES(@IdUsuario, @IdCategoria, @Nome, @Valor, @Data)";
+            string insert = "INSERT INTO gastos(idUsuario, idCategoria, nome, valor, data, idFamilia) VALUES(@IdUsuario, @IdCategoria, @Nome, @Valor, @Data, @idFamilia)";
             MySqlCommand command = new MySqlCommand(insert, conexao);
 
             try
@@ -136,6 +148,7 @@ namespace Repo
                     command.Parameters.AddWithValue("@Valor", gasto.Valor);
                     command.Parameters.AddWithValue("@Data", gasto.Data);
                     command.Parameters.AddWithValue("@IdUsuario", usuarioAtual[0].IdUsuario);
+                    command.Parameters.AddWithValue("@idFamilia", usuarioAtual[0].IdFamilia);
 
                     int rowsAffected = command.ExecuteNonQuery();
                     gasto.IdGastos = Convert.ToInt32(command.LastInsertedId);
@@ -165,7 +178,6 @@ namespace Repo
         public static void AlterarGasto(string nome, string valor, string data, int id, int indice)
         {   
             InitConexao();       
-
 
             string update = "UPDATE gastos SET idCategoria = @IdCategoria, nome = @Nome, valor = @Valor, data = @Data WHERE idGastos = @IdGastos";
             MySqlCommand command = new MySqlCommand(update, conexao);

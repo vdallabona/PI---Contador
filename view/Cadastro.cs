@@ -26,6 +26,8 @@ namespace View
         private readonly TextBox inpSenhaAdm;
         
         private readonly Button btnCadastrar;
+        private readonly Button btnLogar;
+
 
         private readonly Panel PnlLogin;
 
@@ -77,7 +79,7 @@ namespace View
             lblSenhaAdm = new Label
             {
                 Text = "Senha do Adm",
-                Location = new Point(0, 260),
+                Location = new Point(0, 240),
                 Font = new Font("Arial", 12),
                 AutoSize = true
             };
@@ -96,7 +98,6 @@ namespace View
                 Size = new Size(200, 30),
                 Location = new Point(150, 120),
                 Font = new Font("Arial", 12),
-                PasswordChar = '*',
                 BorderStyle = BorderStyle.FixedSingle
             };
 
@@ -105,14 +106,13 @@ namespace View
                 Size = new Size(200, 30),
                 Location = new Point(150, 180),
                 Font = new Font("Arial", 12),
-                PasswordChar = '*',
                 BorderStyle = BorderStyle.FixedSingle
             };
 
             inpSenhaAdm = new TextBox
             {
                 Size = new Size(200, 30),
-                Location = new Point(150, 260),
+                Location = new Point(150, 240),
                 Font = new Font("Arial", 12),
                 PasswordChar = '*',
                 BorderStyle = BorderStyle.FixedSingle
@@ -124,13 +124,24 @@ namespace View
             btnCadastrar = new Button
             {
                 Text = "CADASTRAR",
-                Location = new Point(150, 360),
+                Location = new Point(50, 310),
                 Size = new Size(120, 40),
                 BackColor = Color.LightGreen,
                 FlatStyle = FlatStyle.Flat,
                 Font = new Font("Arial", 10)
             };
             btnCadastrar.Click += ClickCadastrar;
+
+            btnLogar = new Button
+            {
+                Text = "LOGAR",
+                Location = new Point(230, 310),
+                Size = new Size(120, 40),
+                BackColor = Color.LightBlue,
+                FlatStyle = FlatStyle.Flat,
+                Font = new Font("Arial", 10)
+            };
+            btnLogar.Click += ClickLogar;
 
 
             PnlLogin = new Panel
@@ -152,6 +163,8 @@ namespace View
             PnlLogin.Controls.Add(inpLoginAdm);
             PnlLogin.Controls.Add(inpSenhaAdm);
             PnlLogin.Controls.Add(btnCadastrar);
+            PnlLogin.Controls.Add(btnLogar);
+
         }
 
         private void ClickCadastrar(object? sender, EventArgs e)
@@ -159,12 +172,13 @@ namespace View
             string nomeFamilia = inpNomeFam.Text;
             if(inpNomeFam.Text == ""  || inpNomeUser.Text == "" || inpLoginAdm.Text == "" || inpSenhaAdm.Text == ""){
                 MessageBox.Show("Por favor, preencha todos os campos");
-        }
+            }
             
             if (!string.IsNullOrWhiteSpace(nomeFamilia))
             {
                 ControllerCadastro.CriarFamilia(nomeFamilia);
                 inpNomeFam.Clear();
+
             }
             else
             {
@@ -178,6 +192,8 @@ namespace View
             {
                 ControllerCadastro.CriarUsuario(nome, login, senha);
                 inpNomeUser.Clear();
+                Hide();
+                new ViewLogin().Show();
             }
             else
             {
@@ -188,6 +204,8 @@ namespace View
 
         private void ClickLogar(object? sender, EventArgs e)
         {
+            Hide();
+            new ViewLogin().Show();
 
         }
 

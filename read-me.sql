@@ -25,7 +25,8 @@ CREATE TABLE `gastos`(
     `idCategoria` INT UNSIGNED NOT NULL,
     `nome` VARCHAR(255) NOT NULL,
     `valor` DECIMAL(8, 2) NOT NULL,
-    `data` DATE NOT NULL
+    `data` DATE NOT NULL,
+    'idFamilia' INT REFERENCES familia('idFamilia')
 );
 ALTER TABLE
     `gastos` ADD CONSTRAINT `gastos_idusuario_foreign` FOREIGN KEY(`idUsuario`) REFERENCES `usuarios`(`idUsuario`);
