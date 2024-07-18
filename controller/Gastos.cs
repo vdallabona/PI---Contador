@@ -14,14 +14,20 @@ namespace Controller
             return Gastos.Sincronizar();
         }
 
-        public static void CriarGasto(string nome, string valor, string data, string categoria, int id)
+        public static List<int> ContarMembros()
+        {
+            return Gastos.ContarMembros();
+        }
+
+        public static void CriarGasto(string nome, string valor, string data, string categoria, int id, string membro)
         {
             new Gastos(
                 nome,
                 valor,
                 data,
                 categoria,
-                id
+                id,
+                membro
             );
         }
 

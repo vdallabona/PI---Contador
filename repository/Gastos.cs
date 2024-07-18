@@ -9,6 +9,7 @@ namespace Repo
         public static List<Gastos> gastos = [];
         public static List<Categorias>categorias = RepoCategoria.ListCategorias();
         public static List<Login> usuarioAtual = RepoLogin.Listar();
+        public static List<int> idUsers = [];
         public static List<Membros> membros = RepoMembros.ListarMembros();
 
         public static List<Gastos> ListarGastos()
@@ -36,30 +37,52 @@ namespace Repo
             conexao.Close();
         }
 
+        public static List<int> ContarMembros()
+        {
+            idUsers.Clear();
+            InitConexao();
+            int id = 0;
+            string query = "SELECT idUsuario FROM usuarios WHERE idFamilia = @Idfamilia";
+            MySqlCommand command = new MySqlCommand(query, conexao);
+            command.Parameters.AddWithValue("@IdFamilia", usuarioAtual[0].IdFamilia);
+            MySqlDataReader reader = command.ExecuteReader();
+
+            while (reader.Read())
+            {
+                id = Convert.ToInt32(reader["idUsuario"].ToString());
+                idUsers.Add(id);
+            }
+
+            CloseConexao();
+            return idUsers;
+        }
+
         public static List<Gastos> SincronizarAdm()
         {
             gastos.Clear();
             InitConexao();
 
-            string query = "SELECT * FROM gastos, categorias WHERE idCategoria = idCategorias AND idUsuario = @IdUsuario";
-            MySqlCommand command = new MySqlCommand(query, conexao);
-            command.Parameters.AddWithValue("@IdUsuario", usuarioAtual[0].IdUsuario);
-            MySqlDataReader reader = command.ExecuteReader();
+            // string query = "SELECT id, nome, email FROM usuarios WHERE id IN (" + string.Join(", ", ids) + ")";
+            // MySqlCommand command = new MySqlCommand(query, conexao);
+            // command.Parameters.AddWithValue("@IdUsuario", idUsers[0]);
+            // MySqlDataReader reader = command.ExecuteReader();
 
-            while (reader.Read())
-            {
-                Gastos gasto = new Gastos();
-                gasto.IdGastos = Convert.ToInt32(reader["idGastos"].ToString());
-                gasto.IdUsuario = Convert.ToInt32(reader["idUsuario"].ToString());
-                gasto.IdCategoria = Convert.ToInt32(reader["I"].ToString());
-                gasto.Nome = reader["nome"].ToString();
-                gasto.Valor = "R$ " + Convert.ToString(reader["valor"].ToString());
-                gasto.Data = Convert.ToDateTime(reader["data"].ToString());
-                gasto.Categoria = reader["nomeCategoria"].ToString();
-                gasto.Membro = membros[gasto.IdUsuario].Nome;
-
-                gastos.Add(gasto);
-            }
+            // for (int i = 0; i < idUsers.Count; i++)
+            // {
+            //     command.Parameters.AddWithValue("@IdUsuario", idUsers[1]);
+            // MessageBox.Show("Chegou até aqui");
+            //     Gastos gasto = new Gastos();
+            //     gasto.IdGastos = Convert.ToInt32(reader["idGastos"].ToString());
+            //     gasto.IdUsuario = Convert.ToInt32(reader["idUsuario"].ToString());
+            //     gasto.IdCategoria = Convert.ToInt32(reader["idCategoria"].ToString());
+            //     gasto.Nome = reader["nome"].ToString();
+            //     gasto.Valor = "R$ " + Convert.ToString(reader["valor"].ToString());
+            //     gasto.Data = Convert.ToDateTime(reader["data"].ToString());
+            //     gasto.Categoria = reader["nomeCategoria"].ToString();
+            //     // gasto.Membro = membros[idUsers[i - 1]].Nome;
+            //     gastos.Add(gasto);
+            //     j ++;
+            // }
 
             CloseConexao();
             return gastos;
@@ -118,6 +141,7 @@ namespace Repo
                     gasto.IdGastos = Convert.ToInt32(command.LastInsertedId);
                     gasto.Valor = "R$ " + gasto.Valor;
                     gasto.Categoria = categorias[gasto.IdCategoria - 1].Nome;
+                    gasto.Membro = usuarioAtual[0].Nome;
 
                     if (rowsAffected > 0)
                     {

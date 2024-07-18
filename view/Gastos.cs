@@ -26,6 +26,7 @@ namespace View
 
         public ViewGastos()
         {
+            ControllerGastos.ContarMembros();
             ControllerGastos.Sincronizar();
             ControllerCategorias.Sincronizar();
             ControllerMembros.Sincronizar();
@@ -321,8 +322,9 @@ namespace View
             else
             {
                 string categoria = cbCategoria.SelectedItem.ToString();
+                string membro = "";
                 int id = Convert.ToInt32(cbCategoria.SelectedValue);
-                ControllerGastos.CriarGasto(inpGasto.Text, inpValor.Text, inpData.Text, categoria, id);
+                ControllerGastos.CriarGasto(inpGasto.Text, inpValor.Text, inpData.Text, categoria, id, membro);
                 inpGasto.Text = "";
                 inpValor.Text = "";
                 inpData.Text = "";
